@@ -2,13 +2,11 @@ package telas;
 
 import java.awt.EventQueue;
 import javax.swing.JFrame;
-import javax.print.attribute.HashAttributeSet;
+import javax.print.attribute.standard.DateTimeAtCompleted;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
-
 import java.awt.Toolkit;
 import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
@@ -16,21 +14,15 @@ import javax.swing.JMenu;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 import geradorcsv.tipos.tiposARQUIVOS;
-import listas.listaPEDIDO;
 import recursos.Calendario;
 import recursos.horarioATUALIZADO;
-import recursos.transformaSTRINGemDATE;
 import telas.abrirpedido.settings.procurarCELULARlista;
-import telas.buscapedidos.BUSCAPEDIDO;
 import telas.buscapedidos.mostrarPEDIDOS.JanelasMostrarPedidos;
+import telas.login.DADOS;
 
 import javax.swing.JLabel;
 import javax.swing.LayoutStyle.ComponentPlacement;
@@ -68,8 +60,8 @@ public class PRINCIPAL {
 
 	private void initialize() {
 		frmPrincipalAcai = new JFrame();
-		frmPrincipalAcai.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\User\\Desktop\\aqui.png"));
-		frmPrincipalAcai.setTitle("PRINCIPAL - ACAI CHEIO DE DOCURA");
+		frmPrincipalAcai.setIconImage(Toolkit.getDefaultToolkit().getImage(DADOS.LOGO));
+		frmPrincipalAcai.setTitle("PRINCIPAL - LOJA:"+ DADOS.NOME_LOJA);
 		frmPrincipalAcai.setBounds(100, 100, 433, 335);
 		frmPrincipalAcai.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -128,7 +120,7 @@ public class PRINCIPAL {
 
 //		******************************************************************************************************************************************************************************************************************************************
 
-		JLabel lblLOGO = new JLabel(new ImageIcon("aqui5.png"));
+		JLabel lblLOGO = new JLabel(new ImageIcon(DADOS.LOGO));
 		lblLOGO.setVerticalAlignment(SwingConstants.TOP);
 		panellogo.add(lblLOGO);
 		frmPrincipalAcai.getContentPane().setLayout(groupLayout);
@@ -221,7 +213,7 @@ public class PRINCIPAL {
 		btnProcuraPorTel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				List<BigDecimal> listaCOMpedidos = new JanelasMostrarPedidos().JanelaTELEFONE("JANELA TELEFONE", JOptionPane.INFORMATION_MESSAGE);
+				List<BigDecimal> listaCOMpedidos = new JanelasMostrarPedidos().JanelaTELEFONE("CONSULTA PEDIDO POR TELEFONE", JOptionPane.INFORMATION_MESSAGE);
 				
 				new JanelasMostrarPedidos().JanelaPEDIDOStelefone(listaCOMpedidos);
 			}

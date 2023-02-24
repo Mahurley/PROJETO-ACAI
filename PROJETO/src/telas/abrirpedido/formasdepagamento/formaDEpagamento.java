@@ -77,7 +77,7 @@ public class formaDEpagamento extends ABRIRPEDIDO_settings {
 			}
 			
 		});
-		ImageIcon novo = new ImageIcon("C:\\Users\\User\\Desktop\\formas de pagamento\\dinheiro.png");
+		ImageIcon novo = new ImageIcon("imagens/formas de pagamento/dinheiro.png");
 		Image image = novo.getImage();
 		Image nova = image.getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH);
 		btnDINHEIRO.setIcon(new ImageIcon(nova));
@@ -100,9 +100,9 @@ public class formaDEpagamento extends ABRIRPEDIDO_settings {
 				ABRIRPEDIDO.frmAberturaDeVenda.dispose();
 			}
 		});
-		btnCARTAOCREDITO.setIcon(new ImageIcon("C:\\Users\\User\\Desktop\\formas de pagamento\\CARTAO.png"));
+		btnCARTAOCREDITO.setIcon(new ImageIcon("imagens/formas de pagamento/CARTAO.png"));
 		
-		ImageIcon novo2 = new ImageIcon("C:\\Users\\User\\Desktop\\formas de pagamento\\CARTAO.png");
+		ImageIcon novo2 = new ImageIcon("imagens/formas de pagamento/CARTAO.png");
 		Image image2 = novo2.getImage();
 		Image nova2 = image2.getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH);
 		btnCARTAOCREDITO.setIcon(new ImageIcon(nova2));
@@ -121,6 +121,7 @@ public class formaDEpagamento extends ABRIRPEDIDO_settings {
 //		******************************************************************************************************************************************************************************************************************************************
 		
 		JButton btnCARTAODEBITO = new JButton("DEBITO");
+		
 		btnCARTAODEBITO.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new CRIANDOPEDIDOformadePAGAMENTO(PAGAMENTOS.CARTAO_DEBITO, novopedido);
@@ -137,7 +138,7 @@ public class formaDEpagamento extends ABRIRPEDIDO_settings {
 		springLayout.putConstraint(SpringLayout.WEST, btnCARTAODEBITO, 307, SpringLayout.WEST, frmFormaDePagamento.getContentPane());
 		springLayout.putConstraint(SpringLayout.EAST, btnCARTAODEBITO, -10, SpringLayout.EAST, frmFormaDePagamento.getContentPane());
 	
-		ImageIcon novo3 = new ImageIcon("C:\\Users\\User\\Desktop\\formas de pagamento\\CARTAO.png");
+		ImageIcon novo3 = new ImageIcon("imagens/formas de pagamento/CARTAO.png");
 		Image image3 = novo3.getImage();
 		Image nova3 = image3.getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH);
 		btnCARTAODEBITO.setIcon(new ImageIcon(nova3));
