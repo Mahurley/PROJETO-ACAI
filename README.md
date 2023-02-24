@@ -1,5 +1,7 @@
 <h1>ROJETO-ACAI</h1>
+
 //==================================================================//
+
 Versão 1.11 - 24/02 
 
 .Adicionado campo de busca por TELEFONE e MES.
@@ -10,7 +12,9 @@ dados.
 .Ativado Maven no projeto
 
 //==================================================================//
+
 Inicio 23/02
+
 versão v1.1 - 22/02
 
 .Adicionado aba PEDIDOS
@@ -26,4 +30,5 @@ versão v1.1 - 22/02
 .Adicionado ABRIRPEDIDO
 
 .Adicionado ABRIRPEDIDO-FINALIZARPAGAMENTO
+
 //==================================================================//
