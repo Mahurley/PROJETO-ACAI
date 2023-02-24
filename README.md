@@ -5,10 +5,14 @@
 Versão 1.11 - 24/02 
 
 .Adicionado campo de busca por TELEFONE e MES.
+
 .Adicionado controleSQL, para realizar um novo controle de banco de
 dados.
+
 .Realizado limpeza e organizacao de alguns codigo.
+
 .Realizado a separacao de arquivos dentro do projeto.
+
 .Ativado Maven no projeto
 
 //==================================================================//
