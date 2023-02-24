@@ -1,4 +1,10 @@
 <h1>ROJETO-ACAI</h1>
+//==================================================================//
+Versão 1.12 - 24/02 
+
+.Atualizado a tela de LOGIN, aplicado melhorias, LOGO e alteracao de
+Fonte.
+.Organizado imagens usadas para Icon e LOGO.
 
 //==================================================================//
 
