@@ -1,4 +1,4 @@
-package telas.produtos;
+package telas.item;
 
 import java.awt.EventQueue;
 
@@ -10,6 +10,7 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
+
 import geradorcsv.gravacaoCSV;
 import geradorcsv.tipos.tiposITEM;
 import javax.swing.JComboBox;
@@ -18,7 +19,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class cadastrar {
+public class cadastrarITEM {
 
 	private JFrame frmCadastrarItem;
 	private JTextField textNOME;
@@ -32,7 +33,7 @@ public class cadastrar {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					cadastrar window = new cadastrar();
+					cadastrarITEM window = new cadastrarITEM();
 					window.frmCadastrarItem.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -44,7 +45,7 @@ public class cadastrar {
 	/**
 	 * Create the application.
 	 */
-	public cadastrar() {
+	public cadastrarITEM() {
 		initialize();
 		new tiposITEM().leitura();
 	}
@@ -95,8 +96,7 @@ public class cadastrar {
 
 				} else {
 					int recebe = comboBox.getSelectedIndex();
-					new gravacaoCSV(new tiposITEM(), new item(textNOME.getText().toUpperCase(),Integer.valueOf(textPRECO.getText()),Integer.valueOf(textESTOQUE.getText())));//////////////////////////////////////////////
-
+					new gravacaoCSV(new tiposITEM(), new item(textNOME.getText().toUpperCase(),Integer.valueOf(textPRECO.getText()),Integer.valueOf(textESTOQUE.getText())));
 					lblRESPOSTA.setText(String.format("Item: %s | Adicionado com sucesso !", textNOME.getText()));
 				}
 

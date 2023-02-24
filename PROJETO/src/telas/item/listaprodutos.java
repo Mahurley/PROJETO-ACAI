@@ -1,4 +1,4 @@
-package telas.produtos;
+package telas.item;
 
 import java.awt.EventQueue;
 

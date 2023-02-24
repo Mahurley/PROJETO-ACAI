@@ -1,4 +1,4 @@
-package recursos.listas;
+package listas;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -6,7 +6,8 @@ import java.util.Map;
 import java.util.Set;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
-import telas.produtos.item;
+
+import telas.item.item;
 
 public class listaITEM extends tipoLISTA {
 

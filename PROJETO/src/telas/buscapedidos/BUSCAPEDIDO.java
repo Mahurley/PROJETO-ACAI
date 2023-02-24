@@ -13,7 +13,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
 
-public class consultaPEDIDO extends BUSCAPEDIDO_settings {
+public class BUSCAPEDIDO extends BUSCAPEDIDO_settings {
 
 	private JFrame frmCONSULTARPEDIDO;
 	private JTextField textIDPEDIDO;
@@ -32,7 +32,7 @@ public class consultaPEDIDO extends BUSCAPEDIDO_settings {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					consultaPEDIDO window = new consultaPEDIDO(recebeidPEDIDO);
+					BUSCAPEDIDO window = new BUSCAPEDIDO(recebeidPEDIDO);
 					window.frmCONSULTARPEDIDO.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -41,7 +41,7 @@ public class consultaPEDIDO extends BUSCAPEDIDO_settings {
 		});
 	}
 
-	public consultaPEDIDO(String recebeidPEDIDO) {
+	public BUSCAPEDIDO(String recebeidPEDIDO) {
 		tipoPEDIDO = buscaPEDIDO(recebeidPEDIDO);
 		initialize(tipoPEDIDO);
 	}

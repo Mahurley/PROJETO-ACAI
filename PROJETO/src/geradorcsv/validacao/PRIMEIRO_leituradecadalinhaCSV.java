@@ -12,22 +12,6 @@ public class PRIMEIRO_leituradecadalinhaCSV {
 			throw new RuntimeException("Validação 1 - FALHOU");
 		}
 		
-		
-//		try {
-//			Scanner CSV = new Scanner(new File(qualtipoarquivo.caminhoCSV()));
-//			while (CSV.hasNextLine()) {
-//				String linha = CSV.nextLine();
-//				Scanner scanlinha = new Scanner(linha);
-//				scanlinha.useLocale(Locale.US);
-//				scanlinha.useDelimiter(qualtipoarquivo.delimiterdalinha());
-//				scanlinha.close();
-//			}
-//			CSV.close();
-//		} catch (FileNotFoundException e) {
-//			System.out.println("Não encontramos o arquivo CSV");
-//			e.printStackTrace();
-//		}
-
 	}
 	
 	

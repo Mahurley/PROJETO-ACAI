@@ -1,10 +1,10 @@
 package telas.abrirpedido;
 
 import recursos.horarioATUALIZADO;
-import recursos.listas.listaITEM;
 import telas.abrirpedido.formasdepagamento.formaDEpagamento;
 import telas.buscapedidos.pedido;
-import telas.produtos.item;
+import telas.item.item;
+
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JTable;
@@ -28,6 +28,8 @@ import javax.swing.JOptionPane;
 
 import java.awt.Font;
 import javax.swing.SpringLayout;
+
+import listas.listaITEM;
 
 public class ABRIRPEDIDO extends ABRIRPEDIDO_settings {
 

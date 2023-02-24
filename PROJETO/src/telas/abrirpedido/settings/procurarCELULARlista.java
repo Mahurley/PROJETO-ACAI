@@ -1,7 +1,7 @@
 package telas.abrirpedido.settings;
 
-import recursos.listas.listaCLIENTE;
-import recursos.listas.listaPEDIDO;
+import listas.listaCLIENTE;
+import listas.listaPEDIDO;
 import telas.abrirpedido.ABRIRPEDIDO_settings;
 import telas.clientes.cliente;
 

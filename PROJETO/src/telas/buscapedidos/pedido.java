@@ -1,13 +1,15 @@
 package telas.buscapedidos;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Map;
 
-import recursos.listas.listaPEDIDO;
+import listas.listaPEDIDO;
+import recursos.transformaSTRINGemDATE;
 import telas.abrirpedido.formasdepagamento.PAGAMENTOS;
 import telas.clientes.cliente;
-import telas.produtos.item;
+import telas.item.item;
 
 public class pedido extends listaPEDIDO{
 	
@@ -36,12 +38,15 @@ public class pedido extends listaPEDIDO{
 
 	}
 	
-	
 	public void criar(pedido criado) {
 		adiciona(criado);
 		
 	}
-	
+
+	public LocalDate BUSCAporDATA() {
+		return new transformaSTRINGemDATE().transformarDATAcomHORARIO(data);
+
+	}
 	
 	public String getID() {
 		return ID;

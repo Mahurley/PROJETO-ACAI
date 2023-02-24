@@ -10,14 +10,14 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
 
-import recursos.listas.listaCLIENTE;
+import listas.listaCLIENTE;
 import telas.clientes.cliente;
 
 public class tiposCLIENTE extends listaCLIENTE implements tiposARQUIVOS{
 
 	@Override
 	public String caminhoCSV() {	
-		return "cliente.csv";
+		return "arquivosCSV/cliente.csv";
 	}
 
 	@Override

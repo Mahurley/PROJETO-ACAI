@@ -7,10 +7,10 @@ import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import recursos.listas.listaCLIENTE;
-import recursos.listas.listaITEM;
+import listas.listaCLIENTE;
+import listas.listaITEM;
 import telas.clientes.cliente;
-import telas.produtos.item;
+import telas.item.item;
 
 public class ABRIRPEDIDO_settings extends listaCLIENTE {
 

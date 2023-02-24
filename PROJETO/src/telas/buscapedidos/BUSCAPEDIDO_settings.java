@@ -8,9 +8,9 @@ import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import recursos.listas.listaPEDIDO;
+import listas.listaPEDIDO;
 import telas.clientes.cliente;
-import telas.produtos.item;
+import telas.item.item;
 
 public class BUSCAPEDIDO_settings extends listaPEDIDO {
 

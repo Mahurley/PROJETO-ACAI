@@ -9,13 +9,14 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
+
 import geradorcsv.gravacaoCSV;
 import geradorcsv.tipos.tiposCLIENTE;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class cadastrar {
+public class cadastrarCLIENTE {
 
 	private JFrame frmCadastrarItem;
 	private JTextField textNOME;
@@ -31,7 +32,7 @@ public class cadastrar {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					cadastrar window = new cadastrar();
+					cadastrarCLIENTE window = new cadastrarCLIENTE();
 					window.frmCadastrarItem.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -43,7 +44,7 @@ public class cadastrar {
 	/**
 	 * Create the application.
 	 */
-	public cadastrar() {
+	public cadastrarCLIENTE() {
 		initialize();
 		new tiposCLIENTE().leitura();
 	}
@@ -172,6 +173,6 @@ public class cadastrar {
 	}
 
 	public void setLblRESPOSTA(JLabel lblRESPOSTA) {
-		cadastrar.lblRESPOSTA = lblRESPOSTA;
+		cadastrarCLIENTE.lblRESPOSTA = lblRESPOSTA;
 	}
 }

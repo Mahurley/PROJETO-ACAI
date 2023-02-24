@@ -11,18 +11,19 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Scanner;
-import recursos.listas.listaPEDIDO;
+
+import listas.listaPEDIDO;
 import telas.buscapedidos.pedido;
 import telas.abrirpedido.formasdepagamento.PAGAMENTOS;
 import telas.abrirpedido.settings.procurarCELULARlista;
 import telas.clientes.cliente;
-import telas.produtos.item;
+import telas.item.item;
 
 public class tiposPEDIDO extends listaPEDIDO implements tiposARQUIVOS {
 
 	@Override
 	public String caminhoCSV() {
-		return "pedido.csv";
+		return "arquivosCSV/pedido.csv";
 	}
 
 	@Override

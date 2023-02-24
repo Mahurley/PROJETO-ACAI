@@ -4,12 +4,13 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
-import recursos.contadorSEGUNDOS;
+import recursos.timerSEGUNDOS;
 import telas.clientes.cliente;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
+
 import geradorcsv.gravacaoCSV;
 import geradorcsv.tipos.tiposCLIENTE;
 import javax.swing.JButton;
@@ -105,7 +106,7 @@ public class cadastrarPEDIDO {
 
 					lblRESPOSTA.setText(String.format("Cliente: %s | Adicionado com sucesso !", textNOME.getText()));
 					ABRIRPEDIDO_settings.setCLIENTEachado(clientegerado);
-					contadorSEGUNDOS.conta(2000);
+					new timerSEGUNDOS(2000);
 					frmCadastrarItem.dispose();
 					telas.abrirpedido.ABRIRPEDIDO.main(null);
 				}

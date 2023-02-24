@@ -1,11 +1,11 @@
-package recursos.listas;
+package listas;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import javax.swing.DefaultListModel;
 import telas.clientes.cliente;
-import telas.produtos.item;
+import telas.item.item;
 
 public class listaCLIENTE extends tipoLISTA {
 
@@ -23,15 +23,6 @@ public class listaCLIENTE extends tipoLISTA {
 
 	}
 
-	public static boolean procurar(int id) {
-		return listaITEM.getMapprincipalitem().containsKey(id);
-
-	}
-
-	public static item devolve(int id) {
-		return listaITEM.getMapprincipalitem().get(id);
-
-	}
 
 	public boolean procurarNOMElista(Object nome) {
 

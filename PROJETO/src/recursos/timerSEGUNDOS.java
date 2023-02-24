@@ -1,7 +1,7 @@
 package recursos;
 
-public class contadorSEGUNDOS {
-	public static void conta(int valor) {
+public class timerSEGUNDOS {
+	public timerSEGUNDOS(int valor) {
 		try {
 			Thread.sleep(valor);
 		} catch (InterruptedException e1) {

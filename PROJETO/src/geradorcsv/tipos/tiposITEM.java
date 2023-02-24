@@ -10,14 +10,14 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
 
-import recursos.listas.listaITEM;
-import telas.produtos.item;
+import listas.listaITEM;
+import telas.item.item;
 
 public class tiposITEM extends listaITEM implements tiposARQUIVOS{
 
 	@Override
 	public String caminhoCSV() {
-		return "item.csv";
+		return "arquivosCSV/item.csv";
 	}
 
 	@Override

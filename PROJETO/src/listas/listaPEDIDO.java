@@ -1,14 +1,16 @@
-package recursos.listas;
+package listas;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import javax.swing.DefaultListModel;
 import telas.buscapedidos.pedido;
 import telas.clientes.cliente;
-import telas.produtos.item;
+import telas.item.item;
 
 public class listaPEDIDO extends tipoLISTA {
 	
@@ -38,6 +40,29 @@ public class listaPEDIDO extends tipoLISTA {
 	public static item devolve(int id) {
 		return listaITEM.getMapprincipalitem().get(id);
 
+	}
+	
+	public static List<BigDecimal> procurarPEDIDOporMES(int mesrecebe) {
+		List<BigDecimal> valor = new ArrayList<>(); 
+		for (pedido pedido : listaprincipalpedido) {
+			if (pedido.BUSCAporDATA().getMonthValue() == mesrecebe) {
+				valor.add(new BigDecimal(pedido.getID()));
+			}
+			
+		}
+		return valor;
+	}
+	public static List<BigDecimal> procurarPEDIDOporTELEFONE(String telefonerecebe) {
+		List<BigDecimal> valor = new ArrayList<>(); 
+		for (pedido estepedido : listaprincipalpedido) {
+			String telefone = estepedido.getCliente().getTelefone();
+			
+			if (telefone.equals(telefonerecebe)) {
+				valor.add(new BigDecimal(estepedido.getID()));
+			}
+			
+		}
+		return valor;
 	}
 
 	public boolean procurarNOMElista(Object nome) {

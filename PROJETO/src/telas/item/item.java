@@ -1,10 +1,10 @@
-package telas.produtos;
+package telas.item;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-import recursos.listas.listaITEM;
+import listas.listaITEM;
 
 public class item extends listaITEM implements Comparable<item> {
 
