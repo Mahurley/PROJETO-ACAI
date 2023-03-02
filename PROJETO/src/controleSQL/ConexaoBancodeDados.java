@@ -10,7 +10,7 @@ public class ConexaoBancodeDados {
 
 	private Connection conexao;
 
-	protected boolean conectar() {
+	private boolean conectar() {
 
 		String url = "jdbc:sqlite:DB/BANCO.db";
 
@@ -25,7 +25,7 @@ public class ConexaoBancodeDados {
 
 	}
 
-	protected boolean desconectar() {
+	private boolean desconectar() {
 		try {
 			if (conexao.isClosed() == false) {
 				this.conexao.close();
@@ -40,9 +40,7 @@ public class ConexaoBancodeDados {
 
 	}
 	
-
-	
-	protected Statement criarStatement() {
+	private Statement criarStatement() {
 		try {
 			return this.conexao.createStatement();
 		} catch (SQLException e) {
@@ -52,7 +50,7 @@ public class ConexaoBancodeDados {
 		}
 	}
 
-	protected PreparedStatement criarPreparedStatement(String sql) {
+	private PreparedStatement criarPreparedStatement(String sql) {
 		try {
 			return this.conexao.prepareStatement(sql);
 		} catch (SQLException e) {
@@ -64,4 +62,20 @@ public class ConexaoBancodeDados {
 	}
 
 	
+	public boolean getConectar() {
+		return conectar();
+
+	}
+	
+	public boolean getDesconectar() {
+		return desconectar();
+	}
+	
+	public Statement getCriarStatement() {
+		return criarStatement();
+	}
+	
+	public PreparedStatement getCriarPreparedStatement(String sql) {
+		return criarPreparedStatement(sql);
+	}
 }

@@ -1,8 +1,5 @@
 package telas.clientes;
-
-import java.text.SimpleDateFormat;
 import java.util.Date;
-
 import controleSQL.CriacaoCliente;
 
 public class cliente implements Comparable<cliente>{
@@ -14,11 +11,9 @@ public class cliente implements Comparable<cliente>{
 	private int id;
 	private int quantidadePEDIDOS = 0;
 	
-	public cliente(String nome, String datanascimento, String email, String telefone) {
+	public cliente(String nome, java.util.Date date, String email, String telefone) {
 		this.nome = nome;
-		
-		
-		this.datanascimento = new Date().parse(new SimpleDateFormat(telefone, null) ;
+		this.datanascimento = date;
 		this.email = email;
 		this.telefone = telefone;
 	}
@@ -46,7 +41,6 @@ public class cliente implements Comparable<cliente>{
 		new CriacaoCliente().getCriar(criar);
 	}
 	
-	contro
 	
 	@Override
 	public int compareTo(cliente o) {

@@ -1,6 +1,6 @@
 package telas.abrirpedido.formasdepagamento;
 
-public enum PAGAMENTOS {
+public enum TABELAS {
 	
 	DINHEIRO,
 	CARTAO_DEBITO,

@@ -7,7 +7,7 @@ import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import controleSQL.BuscaTodosDaTabela;
+import controleSQL.funcoes.BuscaTodosDaTabela;
 import telas.clientes.cliente;
 import telas.item.item;
 

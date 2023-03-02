@@ -19,8 +19,8 @@ public class CriacaoItem {
 				+ " VALUES (?,?,?);";
 		
 		ConexaoBancodeDados conexaoDB = new ConexaoBancodeDados();
-		conexaoDB.conectar();
-		PreparedStatement stmt = conexaoDB.criarPreparedStatement(sql);
+		conexaoDB.getConectar();
+		PreparedStatement stmt = conexaoDB.getCriarPreparedStatement(sql);
 		
 		try {
 			stmt.setString(1, item.getNome());
@@ -50,7 +50,7 @@ public class CriacaoItem {
 		}finally {
 			try {
 				stmt.close();
-				conexaoDB.desconectar();
+				conexaoDB.getDesconectar();
 			} catch (SQLException e) {
 				System.out.println(e.getMessage());
 				System.out.println("Erro durante a desconexao - item");

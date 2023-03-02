@@ -1,4 +1,4 @@
-package controleSQL;
+package controleSQL.funcoes;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -6,6 +6,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import controleSQL.ConexaoBancodeDados;
 import telas.item.item;
 import telas.clientes.cliente;
 
@@ -17,11 +18,11 @@ public class BuscaTodosDaTabela {
 
 		List<item> lista = new ArrayList<item>();
 
-		conect.conectar();
+		conect.getConectar();
 
 		String query = "SELECT * FROM tbItem;";
 
-		Statement stmt = conect.criarStatement();
+		Statement stmt = conect.getCriarStatement();
 		ResultSet rs = null;
 
 		try {
@@ -59,11 +60,11 @@ public class BuscaTodosDaTabela {
 		List<cliente> lista = new ArrayList<cliente>();
 
 		ConexaoBancodeDados conect = new ConexaoBancodeDados();
-		conect.conectar();
+		conect.getConectar();
 
 		String query = "SELECT * FROM tbCliente;";
 
-		Statement stmt = conect.criarStatement();
+		Statement stmt = conect.getCriarStatement();
 		ResultSet result = null;
 		try {
 			 result = stmt.executeQuery(query);
@@ -72,7 +73,7 @@ public class BuscaTodosDaTabela {
 				cliente cliente = new cliente();
 				cliente.setId(result.getInt("ID"));
 				cliente.setNome(result.getString("NOME"));
-				cliente.setDatanascimento(result.getString("DATA_NASCIMENTO"));
+				cliente.setDatanascimento(new TransformaDATE().preparaDateUtil(new TransformaDATE().StringParaDateSQL(result.getString("DATA_NASCIMENTO"))));
 				cliente.setEmail(result.getString("EMAIL"));
 				cliente.setTelefone(result.getString("TELEFONE"));
 				cliente.setQuantidadePEDIDOS(result.getInt("QUANTIDADE_PEDIDOS"));

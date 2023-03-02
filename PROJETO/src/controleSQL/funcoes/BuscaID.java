@@ -1,10 +1,11 @@
-package controleSQL;
+package controleSQL.funcoes;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import controleSQL.ConexaoBancodeDados;
 import telas.clientes.cliente;
 
 public class BuscaID {
@@ -15,11 +16,11 @@ public class BuscaID {
 		
 		ConexaoBancodeDados conect = new ConexaoBancodeDados();
 	
-		conect.conectar();
+		conect.getConectar();
 		
 		String sql = "SELECT * FROM tbCliente WHERE id = 1;";
 		
-		Statement stmt = conect.criarStatement();
+		Statement stmt = conect.getCriarStatement();
 		
 		try {
 			ResultSet resultadoset = stmt.executeQuery(sql);

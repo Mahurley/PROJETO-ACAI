@@ -1,6 +1,6 @@
 package telas.abrirpedido.settings;
 
-import controleSQL.BuscaTodosDaTabela;
+import controleSQL.funcoes.BuscaTodosDaTabela;
 import telas.abrirpedido.ABRIRPEDIDO_settings;
 import telas.clientes.cliente;
 

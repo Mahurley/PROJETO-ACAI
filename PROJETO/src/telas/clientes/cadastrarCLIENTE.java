@@ -16,6 +16,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.text.BadLocationException;
+import javax.swing.text.Document;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.InputMethodEvent;
@@ -33,9 +34,9 @@ public class cadastrarCLIENTE {
 	private JTextField textNOME;
 	private JTextField textEMAIL;
 	private JTextField textTELEFONE;
-	private JTextField textDATANASCIMENTO;
+	protected JTextField textDATANASCIMENTO;
 	private static JLabel lblRESPOSTA;
-	private String escrita = null;
+	
 
 	/**
 	 * Launch the application.
@@ -186,34 +187,8 @@ public class cadastrarCLIENTE {
 
 			@Override
 			public void insertUpdate(DocumentEvent e) {
-				if (e.getDocument().getLength() == 3 ||e.getDocument().getLength() == 6) {
-					char ultimochar = textDATANASCIMENTO.getText().charAt(textDATANASCIMENTO.getDocument().getLength()-1);
-					String charstring = String.valueOf(ultimochar);
-					if (charstring.compareTo("/") != 0) { 
-						String texto = textDATANASCIMENTO.getText()+" ";
- 						char[] novochar = texto.toCharArray();
- 						novochar[texto.length()-1] = novochar[texto.length()-2];
- 						novochar[texto.length()-2] = '/';
-						String novotextoatualizado = String.valueOf(novochar);
-						SwingUtilities.invokeLater(() -> textDATANASCIMENTO.setText(novotextoatualizado));
-					}
-					
-				}
-				if (e.getDocument().getLength() == 10) {
-					return;
-				}
-				if (e.getDocument().getLength() == 2 || e.getDocument().getLength() == 5) {
-					try {
-						escrita = textDATANASCIMENTO.getText(0, textDATANASCIMENTO.getDocument().getLength()) + "/";
-					
-						SwingUtilities.invokeLater(() -> textDATANASCIMENTO.setText(escrita));
-						
-						
-					} catch (BadLocationException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-				}
+				
+				new TratamentoDataNascimento(e);
 				
 				
 

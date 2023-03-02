@@ -27,7 +27,7 @@ import javax.swing.JOptionPane;
 import java.awt.Font;
 import javax.swing.SpringLayout;
 
-import controleSQL.BuscaTodosDaTabela;
+import controleSQL.funcoes.BuscaTodosDaTabela;
 
 public class ABRIRPEDIDO extends ABRIRPEDIDO_settings {
 

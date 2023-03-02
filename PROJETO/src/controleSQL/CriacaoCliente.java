@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+import controleSQL.funcoes.TransformaDATE;
 import telas.clientes.cliente;
 
 public class CriacaoCliente {
@@ -11,18 +12,18 @@ public class CriacaoCliente {
 	private boolean criar(cliente cliente) {
 		boolean result = false;
 		ConexaoBancodeDados conect = new ConexaoBancodeDados();
-		conect.conectar();
+		conect.getConectar();
 		
 		String sql = "INSERT OR IGNORE INTO tbCliente "
 				+ "(NOME,DATA_NASCIMENTO,EMAIL,TELEFONE,QUANTIDADE_PEDIDOS)"
 				+ " VALUES "
 				+ "(?,?,?,?,?);";
 		
-		PreparedStatement stmt = conect.criarPreparedStatement(sql);
+		PreparedStatement stmt = conect.getCriarPreparedStatement(sql);
 		
 		try {
 			stmt.setString(1, cliente.getNome());
-			stmt.setDate(2, new Date(cliente.getDatanascimento().getTime()));
+			stmt.setDate(2, new TransformaDATE().preparaDateSQL(cliente.getDatanascimento()));
 			stmt.setString(3, cliente.getEmail());
 			stmt.setString(4, cliente.getTelefone());
 			stmt.setInt(5, cliente.getQuantidadePEDIDOS());
@@ -46,7 +47,7 @@ public class CriacaoCliente {
 		}finally {
 			try {
 				stmt.close();
-				conect.desconectar();
+				conect.getDesconectar();
 				System.out.println("Tudo closed");
 			} catch (SQLException e) {
 				System.out.println(e.getMessage());

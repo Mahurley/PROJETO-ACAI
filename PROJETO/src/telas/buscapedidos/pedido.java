@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Map;
 import recursos.transformaSTRINGemDATE;
-import telas.abrirpedido.formasdepagamento.PAGAMENTOS;
+import telas.abrirpedido.formasdepagamento.TABELAS;
 import telas.clientes.cliente;
 import telas.item.item;
 
@@ -13,7 +13,7 @@ public class pedido {
 	
 	private String ID;
 	private cliente cliente;
-	private PAGAMENTOS formaDEpagamento;
+	private TABELAS formaDEpagamento;
 	private double valorTOTAL;
 	private Map<Integer, item> tabela;
 	private String data;
@@ -26,7 +26,7 @@ public class pedido {
 		this.data = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
 	}
 	
-	public pedido(String iD,cliente cliente, PAGAMENTOS formaDEpagamento,double valorTOTAL,String data ,Map<Integer, item> tabela) {
+	public pedido(String iD,cliente cliente, TABELAS formaDEpagamento,double valorTOTAL,String data ,Map<Integer, item> tabela) {
 		this.ID = iD;
 		this.cliente = cliente;
 		this.formaDEpagamento = formaDEpagamento;
@@ -62,10 +62,10 @@ public class pedido {
 	public void setCliente(cliente cliente) {
 		this.cliente = cliente;
 	}
-	public PAGAMENTOS getFormaDEpagamento() {
+	public TABELAS getFormaDEpagamento() {
 		return formaDEpagamento;
 	}
-	public void setFormaDEpagamento(PAGAMENTOS formaDEpagamento) {
+	public void setFormaDEpagamento(TABELAS formaDEpagamento) {
 		this.formaDEpagamento = formaDEpagamento;
 	}
 	public Map<Integer, item> getTabela() {

@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+import controleSQL.funcoes.BuscaID;
 import telas.buscapedidos.pedido;
 
 public class CriacaoPedido {
@@ -14,7 +15,7 @@ public class CriacaoPedido {
 		boolean result = false;
 		
 		ConexaoBancodeDados conect = new ConexaoBancodeDados();
-		conect.conectar();
+		conect.getConectar();
 		
 		String sql = "INSERT OR IGNORE INTO tbPedido "
 				+ "(ID,ID_CLIENTE,FORMA_DE_PAGAMENTO,VALORTOTAL,ITEM_PEDIDO,DATA)"
@@ -22,19 +23,28 @@ public class CriacaoPedido {
 				+ "(?,?,?,?,?,?);";
 		
 		
-		PreparedStatement stmt = conect.criarPreparedStatement(sql);
-		ResultSet rs = stmt.getResultSet();
+		PreparedStatement stmt = conect.getCriarPreparedStatement(sql);
+		ResultSet rs = null;
 		
 		
 		try {
+			rs = stmt.getResultSet();
 			stmt.execute();
 			pedido pedidocriado = new pedido();
 			pedidocriado.setID(rs.getString("ID"));
 			pedidocriado.setCliente(new BuscaID().cliente(rs.getInt("ID_CLIENTE")));
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("Erro com ResultSet ou Statement - Pedido");
+			System.err.println(e.getMessage());
+		}finally {
+			try {
+				rs.close();
+				stmt.close();
+			} catch (SQLException e) {
+				System.out.println("Erro para fechar ResultSet ou Statement - Pedido");
+				System.err.println(e.getMessage());
+			}
 		}
 		
 		
