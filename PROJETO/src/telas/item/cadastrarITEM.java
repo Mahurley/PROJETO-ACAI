@@ -6,13 +6,14 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
+
+import controleSQL.CriacaoItem;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-import geradorcsv.gravacaoCSV;
-import geradorcsv.tipos.tiposITEM;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -47,7 +48,6 @@ public class cadastrarITEM {
 	 */
 	public cadastrarITEM() {
 		initialize();
-		new tiposITEM().leitura();
 	}
 
 	/**
@@ -96,7 +96,7 @@ public class cadastrarITEM {
 
 				} else {
 					int recebe = comboBox.getSelectedIndex();
-					new gravacaoCSV(new tiposITEM(), new item(textNOME.getText().toUpperCase(),Integer.valueOf(textPRECO.getText()),Integer.valueOf(textESTOQUE.getText())));
+					new CriacaoItem().getCriar(new item(textNOME.getText().toUpperCase(),Integer.valueOf(textPRECO.getText()),Integer.valueOf(textESTOQUE.getText())));
 					lblRESPOSTA.setText(String.format("Item: %s | Adicionado com sucesso !", textNOME.getText()));
 				}
 

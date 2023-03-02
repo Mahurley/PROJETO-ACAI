@@ -2,7 +2,6 @@ package telas;
 
 import java.awt.EventQueue;
 import javax.swing.JFrame;
-import javax.print.attribute.standard.DateTimeAtCompleted;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
@@ -14,10 +13,10 @@ import javax.swing.JMenu;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
-import geradorcsv.tipos.tiposARQUIVOS;
 import recursos.Calendario;
 import recursos.horarioATUALIZADO;
 import telas.abrirpedido.settings.procurarCELULARlista;
@@ -50,8 +49,6 @@ public class PRINCIPAL {
 //	******************************************************************************************************************************************************************************************************************************************
 
 	public PRINCIPAL() throws IOException {
-		tiposARQUIVOS.verificarTODOScsv();
-		tiposARQUIVOS.leituraTODOScsv();
 
 		initialize();
 	}
@@ -188,7 +185,13 @@ public class PRINCIPAL {
 
 				String IDpedido = JOptionPane.showInputDialog(null, "ID PEDIDO", "BUSCA PEDIDO - ID",
 						JOptionPane.QUESTION_MESSAGE);
-				telas.buscapedidos.BUSCAPEDIDO.main(IDpedido);
+				if(IDpedido == null || IDpedido.isBlank()){
+					new InputMismatchException("Campo vazio");
+				}else {
+					telas.buscapedidos.BUSCAPEDIDO.main(IDpedido);
+					
+				}
+				System.out.println("pasei aqui");
 			}
 		});
 		mnPEDIDOS.add(btnConsultPedidos);
@@ -199,7 +202,7 @@ public class PRINCIPAL {
 
 				String[] CALENDARIO = new Calendario().gerandoCalendario();
 				List<BigDecimal> LISTAcomPEDIDOS = new JanelasMostrarPedidos().JanelaMES(CALENDARIO,"CONSULTA PEDIDOS POR MES",JOptionPane.YES_NO_OPTION);
-				
+				System.out.println(LISTAcomPEDIDOS);
 				new JanelasMostrarPedidos().JanelaPEDIDOS(LISTAcomPEDIDOS);
 					
 

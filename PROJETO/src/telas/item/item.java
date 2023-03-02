@@ -1,12 +1,9 @@
 package telas.item;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
 
-import listas.listaITEM;
+import controleSQL.CriacaoItem;
 
-public class item extends listaITEM implements Comparable<item> {
+public class item implements Comparable<item> {
 
 	private int id;
 	private String nome;
@@ -16,7 +13,6 @@ public class item extends listaITEM implements Comparable<item> {
 
 	public item(String nome, double valor, int quantidade) {
 
-		this.id = IDGERADORitem();
 		this.valor = valor;
 		this.quantidade = quantidade;
 		this.nome = nome;
@@ -36,8 +32,8 @@ public class item extends listaITEM implements Comparable<item> {
 	}
 
 	public void criar(item criado) {
-		adiciona(criado);
-		
+		//adiciona(criado);
+		new CriacaoItem().getCriar(criado);
 
 	}
 	@Override
@@ -45,7 +41,6 @@ public class item extends listaITEM implements Comparable<item> {
 		return this.nome.compareTo(o.nome);
 	}
 
-	@Override
 	public String toString() {
 		return String.format("Nome: %-20s | Valor = R$%5.2f | Quantidade: %3d", nome, valor, quantidade);
 	}
@@ -82,21 +77,6 @@ public class item extends listaITEM implements Comparable<item> {
 		this.nome = nome;
 	}
 
-	private static int IDGERADORitem() {
-		List<item> listagerada = new ArrayList<>(getListaprincipalitem());
-		listagerada.sort(Comparator.comparing(item::getId));
-		int id = 0;
-		for (int i = 0; i <= listagerada.size(); i++) {
-			if (!getMapprincipalitem().containsKey(i)) {
-				id = i;
-				System.out.println("Achei este ID: " + id);
-				break;
-			} else {
-				System.out.println("Ja existe este ID!");
-			}
-		}
-		return id;
-
-	}
+	
 	
 }

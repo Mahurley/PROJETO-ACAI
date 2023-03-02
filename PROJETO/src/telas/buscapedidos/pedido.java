@@ -4,14 +4,12 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Map;
-
-import listas.listaPEDIDO;
 import recursos.transformaSTRINGemDATE;
 import telas.abrirpedido.formasdepagamento.PAGAMENTOS;
 import telas.clientes.cliente;
 import telas.item.item;
 
-public class pedido extends listaPEDIDO{
+public class pedido {
 	
 	private String ID;
 	private cliente cliente;
@@ -38,8 +36,12 @@ public class pedido extends listaPEDIDO{
 
 	}
 	
+	public pedido() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public void criar(pedido criado) {
-		adiciona(criado);
+		//adiciona(criado);
 		
 	}
 

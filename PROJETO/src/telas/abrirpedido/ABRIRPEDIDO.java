@@ -4,7 +4,6 @@ import recursos.horarioATUALIZADO;
 import telas.abrirpedido.formasdepagamento.formaDEpagamento;
 import telas.buscapedidos.pedido;
 import telas.item.item;
-
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JTable;
@@ -25,11 +24,10 @@ import java.util.Map;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-
 import java.awt.Font;
 import javax.swing.SpringLayout;
 
-import listas.listaITEM;
+import controleSQL.BuscaTodosDaTabela;
 
 public class ABRIRPEDIDO extends ABRIRPEDIDO_settings {
 
@@ -56,7 +54,6 @@ public class ABRIRPEDIDO extends ABRIRPEDIDO_settings {
 //	******************************************************************************************************************************************************************************************************************************************
 
 	public ABRIRPEDIDO() {
-		// tiposARQUIVOS.leituraTODOScsv();
 		initialize();
 	}
 
@@ -303,7 +300,7 @@ public class ABRIRPEDIDO extends ABRIRPEDIDO_settings {
 //	******************************************************************************************************************************************************************************************************************************************
 
 	private void atualizarJTABLE() {
-		List<item> nova = new ArrayList<item>(listaITEM.getListaprincipalitem());
+		List<item> nova = new ArrayList<item>(new BuscaTodosDaTabela().getItem());
 		nova.sort(Comparator.comparing(item::getId));
 		for (item cada : nova) {
 			ADDitemJTABLE(cada);

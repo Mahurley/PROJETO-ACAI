@@ -11,6 +11,9 @@ public class CRIANDOPEDIDOformadePAGAMENTO extends ABRIRPEDIDO_settings{
 //	******************************************************************************************************************************************************************************************************************************************
 	
 	public CRIANDOPEDIDOformadePAGAMENTO(PAGAMENTOS pagamento, pedido novo) {
+		
+		
+		
 		novo.setFormaDEpagamento(pagamento);
 		getListaprincipalcliente().remove(novo.getCliente());
 		int totalpedido = novo.getCliente().getQuantidadePEDIDOS()+1;

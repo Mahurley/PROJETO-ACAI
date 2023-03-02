@@ -6,6 +6,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
+
+import controleSQL.CriacaoPedido;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JTextField;
@@ -42,7 +45,7 @@ public class BUSCAPEDIDO extends BUSCAPEDIDO_settings {
 	}
 
 	public BUSCAPEDIDO(String recebeidPEDIDO) {
-		tipoPEDIDO = buscaPEDIDO(recebeidPEDIDO);
+		tipoPEDIDO = new CriacaoPedido().buscar(recebeidPEDIDO);
 		initialize(tipoPEDIDO);
 	}
 

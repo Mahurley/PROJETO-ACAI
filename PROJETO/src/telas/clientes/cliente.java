@@ -1,15 +1,14 @@
 package telas.clientes;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
-import listas.listaCLIENTE;
+import controleSQL.CriacaoCliente;
 
-public class cliente extends listaCLIENTE implements Comparable<cliente>{
+public class cliente implements Comparable<cliente>{
 	
 	private String nome;
-	private String datanascimento;
+	private Date datanascimento;
 	private String email;
 	private String telefone;
 	private int id;
@@ -17,13 +16,14 @@ public class cliente extends listaCLIENTE implements Comparable<cliente>{
 	
 	public cliente(String nome, String datanascimento, String email, String telefone) {
 		this.nome = nome;
-		this.datanascimento = datanascimento;
+		
+		
+		this.datanascimento = new Date().parse(new SimpleDateFormat(telefone, null) ;
 		this.email = email;
 		this.telefone = telefone;
-		this.id = IDGERADORcliente();
 	}
 	
-	public cliente(String nome, String datanascimento, String email, String telefone,int id,int quantidadePEDIDOS) {
+	public cliente(String nome, Date datanascimento, String email, String telefone,int id,int quantidadePEDIDOS) {
 		this.nome = nome;
 		this.datanascimento = datanascimento;
 		this.email = email;
@@ -35,12 +35,18 @@ public class cliente extends listaCLIENTE implements Comparable<cliente>{
 	public cliente(String nome, String telefone,int id) {
 		this.nome = nome;
 		this.telefone = telefone;
-		this.id = IDGERADORcliente();
 	}
 	
-	public void criar(cliente criar) {
-		adiciona(criar);
+	public cliente() {
+		// TODO Auto-generated constructor stub
 	}
+
+	public void criar(cliente criar) {
+		//adiciona(criar);
+		new CriacaoCliente().getCriar(criar);
+	}
+	
+	contro
 	
 	@Override
 	public int compareTo(cliente o) {
@@ -54,11 +60,11 @@ public class cliente extends listaCLIENTE implements Comparable<cliente>{
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public String getDatanascimento() {
+	public Date getDatanascimento() {
 		return datanascimento;
 	}
-	public void setDatanascimento(String datanascimento) {
-		this.datanascimento = datanascimento;
+	public void setDatanascimento(Date date) {
+		this.datanascimento = date;
 	}
 	public String getEmail() {
 		return email;
@@ -79,22 +85,6 @@ public class cliente extends listaCLIENTE implements Comparable<cliente>{
 		this.id = id;
 	}
 	
-	private static int IDGERADORcliente() {
-		List<cliente> listagerada = new ArrayList<>(getListaprincipalcliente());
-		listagerada.sort(Comparator.comparing(cliente::getId));
-		int id = 0;
-		for (int i = 0; i <= listagerada.size(); i++) {
-			if (!getMapprincipalcliente().containsKey(i)) {
-				id = i;
-				System.out.println("Achei este ID: " + id);
-				break;
-			} else {
-				System.out.println("Ja existe este ID!");
-			}
-		}
-		return id;
-
-	}
 
 	public int getQuantidadePEDIDOS() {
 		return quantidadePEDIDOS;

@@ -4,17 +4,18 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
+import controleSQL.CriacaoCliente;
 import recursos.timerSEGUNDOS;
 import telas.clientes.cliente;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
-
-import geradorcsv.gravacaoCSV;
-import geradorcsv.tipos.tiposCLIENTE;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.awt.event.ActionEvent;
 
 public class cadastrarPEDIDO {
@@ -95,21 +96,35 @@ public class cadastrarPEDIDO {
 		JButton btnADICIONAR = new JButton("ADICIONAR !");
 		btnADICIONAR.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Date data = null;
 				if (textNOME.getText().isEmpty() | textTELEFONE.getText().isEmpty() | textEMAIL.getText().isEmpty()| textDATANASCIMENTO.getText().isEmpty()
 						| textNOME.getText().isBlank() | textTELEFONE.getText().isBlank()
 						| textEMAIL.getText().isBlank()| textDATANASCIMENTO.getText().isBlank()) {
 					lblRESPOSTA.setText("EXISTE CAMPO VAZIO");
 
 				} else {
-					cliente clientegerado = new cliente(textNOME.getText().toUpperCase(),textDATANASCIMENTO.getText(),textEMAIL.getText(),textTELEFONE.getText());
-					new gravacaoCSV(new tiposCLIENTE(), clientegerado);
+					
+					String formato = textDATANASCIMENTO.getText();
+					SimpleDateFormat simples = new SimpleDateFormat("dd/MM/yyyy");
+
+					try {
+						data = simples.parse(formato);
+						System.out.println("data formatada" + data);
+					} catch (ParseException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}finally {
+					cliente clientegerado = new cliente(textNOME.getText().toUpperCase(),data,textEMAIL.getText(),textTELEFONE.getText());
+					new CriacaoCliente().getCriar(clientegerado);
 
 					lblRESPOSTA.setText(String.format("Cliente: %s | Adicionado com sucesso !", textNOME.getText()));
 					ABRIRPEDIDO_settings.setCLIENTEachado(clientegerado);
 					new timerSEGUNDOS(2000);
 					frmCadastrarItem.dispose();
 					telas.abrirpedido.ABRIRPEDIDO.main(null);
+					}
 				}
+					
 
 			}
 		});

@@ -5,7 +5,6 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import geradorcsv.tipos.tiposITEM;
 import javax.swing.JScrollPane;
 
 public class listaprodutos {
@@ -29,7 +28,6 @@ public class listaprodutos {
 	 * Create the application.
 	 */
 	public listaprodutos() {
-		new tiposITEM().leitura();
 		initialize();
 		
 	}

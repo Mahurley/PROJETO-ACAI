@@ -7,12 +7,11 @@ import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import listas.listaCLIENTE;
-import listas.listaITEM;
+import controleSQL.BuscaTodosDaTabela;
 import telas.clientes.cliente;
 import telas.item.item;
 
-public class ABRIRPEDIDO_settings extends listaCLIENTE {
+public class ABRIRPEDIDO_settings {
 
 	private static String NUMEROPEDIDO;
 	private static cliente CLIENTEachado;
@@ -58,7 +57,7 @@ public class ABRIRPEDIDO_settings extends listaCLIENTE {
 //	******************************************************************************************************************************************************************************************************************************************
 
 	public static item buscaITEMselecionadoJTABLE() {
-		List<item> nova = new ArrayList<item>(listaITEM.getListaprincipalitem());
+		List<item> nova = new ArrayList<item>(new BuscaTodosDaTabela().getItem());
 		nova.sort(Comparator.comparing(item::getNome));
 		return nova.get(ABRIRPEDIDO_settings.getTable().getSelectedRow());
 
