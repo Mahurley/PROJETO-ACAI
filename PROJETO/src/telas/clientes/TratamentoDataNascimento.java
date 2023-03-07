@@ -1,16 +1,17 @@
 package telas.clientes;
 
+import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.event.DocumentEvent;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
 
-public class TratamentoDataNascimento extends cadastrarCLIENTE {
+public class TratamentoDataNascimento {
 	
-	public TratamentoDataNascimento(DocumentEvent e) {
+	public TratamentoDataNascimento(DocumentEvent e, JTextField textDATANASCIMENTO) {
 		
 		verificaLimiteTamanhoDataNascimento(e);
-		inclusaoDeBarrasDIAeMES(e);
+		inclusaoDeBarrasDIAeMES(e,textDATANASCIMENTO);
 		
 		
 		
@@ -32,7 +33,7 @@ public class TratamentoDataNascimento extends cadastrarCLIENTE {
 		
 	}
 
-	private void inclusaoDeBarrasDIAeMES(DocumentEvent e) {
+	private void inclusaoDeBarrasDIAeMES(DocumentEvent e, JTextField textDATANASCIMENTO) {
 		if (e.getDocument().getLength() == 3 ||e.getDocument().getLength() == 6) {
 			char ultimochar = textDATANASCIMENTO.getText().charAt(textDATANASCIMENTO.getDocument().getLength()-1);
 			String charstring = String.valueOf(ultimochar);

@@ -4,13 +4,9 @@ import java.awt.EventQueue;
 import java.awt.Image;
 import javax.swing.JFrame;
 import javax.swing.SpringLayout;
-
-import geradorcsv.gravacaoCSV;
-
+import controleSQL.CriacaoPedido;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
-
-import geradorcsv.tipos.tiposPEDIDO;
 import telas.abrirpedido.ABRIRPEDIDO;
 import telas.abrirpedido.ABRIRPEDIDO_settings;
 import telas.abrirpedido.settings.CRIANDOPEDIDOformadePAGAMENTO;
@@ -70,8 +66,8 @@ public class formaDEpagamento extends ABRIRPEDIDO_settings {
 		springLayout.putConstraint(SpringLayout.SOUTH, btnDINHEIRO, -158, SpringLayout.SOUTH, frmFormaDePagamento.getContentPane());
 		btnDINHEIRO.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new CRIANDOPEDIDOformadePAGAMENTO(TABELAS.DINHEIRO, novopedido);
-				new gravacaoCSV(new tiposPEDIDO(), novopedido);
+				new CRIANDOPEDIDOformadePAGAMENTO(PAGAMENTOS.DINHEIRO, novopedido);
+				new CriacaoPedido().getCriar(novopedido);
 				frmFormaDePagamento.dispose();
 				ABRIRPEDIDO.frmAberturaDeVenda.dispose();
 			}
@@ -94,8 +90,8 @@ public class formaDEpagamento extends ABRIRPEDIDO_settings {
 		springLayout.putConstraint(SpringLayout.WEST, btnCARTAOCREDITO, 158, SpringLayout.WEST, frmFormaDePagamento.getContentPane());
 		btnCARTAOCREDITO.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new CRIANDOPEDIDOformadePAGAMENTO(TABELAS.CARTAO_CREDITO, novopedido);
-				new gravacaoCSV(new tiposPEDIDO(), novopedido);
+				new CRIANDOPEDIDOformadePAGAMENTO(PAGAMENTOS.CARTAO_CREDITO, novopedido);
+				new CriacaoPedido().getCriar(novopedido);
 				frmFormaDePagamento.dispose();
 				ABRIRPEDIDO.frmAberturaDeVenda.dispose();
 			}
@@ -124,8 +120,8 @@ public class formaDEpagamento extends ABRIRPEDIDO_settings {
 		
 		btnCARTAODEBITO.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new CRIANDOPEDIDOformadePAGAMENTO(TABELAS.CARTAO_DEBITO, novopedido);
-				new gravacaoCSV(new tiposPEDIDO(), novopedido);
+				new CRIANDOPEDIDOformadePAGAMENTO(PAGAMENTOS.CARTAO_DEBITO, novopedido);
+				new CriacaoPedido().getCriar(novopedido);
 				frmFormaDePagamento.dispose();
 				ABRIRPEDIDO.frmAberturaDeVenda.dispose();
 			}

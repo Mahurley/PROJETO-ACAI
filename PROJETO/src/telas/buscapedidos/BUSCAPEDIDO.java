@@ -6,9 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
-
-import controleSQL.CriacaoPedido;
-
+import controleSQL.funcoes.ProcurarPedido;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JTextField;
@@ -45,11 +43,12 @@ public class BUSCAPEDIDO extends BUSCAPEDIDO_settings {
 	}
 
 	public BUSCAPEDIDO(String recebeidPEDIDO) {
-		tipoPEDIDO = new CriacaoPedido().buscar(recebeidPEDIDO);
+		//tipoPEDIDO = new ProcurarPedido().porID(recebeidPEDIDO);
+		tipoPEDIDO = buscaPEDIDO(recebeidPEDIDO);
 		initialize(tipoPEDIDO);
 	}
 
-	private void initialize(pedido recebePEDIDO) {
+	private void initialize(pedido tipo) {
 		frmCONSULTARPEDIDO = new JFrame();
 		frmCONSULTARPEDIDO.setResizable(false);
 		frmCONSULTARPEDIDO.setTitle("CONSULTA PEDIDO");
@@ -174,11 +173,11 @@ public class BUSCAPEDIDO extends BUSCAPEDIDO_settings {
 		
 
 //		******************************************************************************************************************************************************************************************************************************************
-		textIDPEDIDO.setText(recebePEDIDO.getID());
-		textCLIENTE.setText(recebePEDIDO.getCliente().getNome());
-		textVALORTOTAL.setText(String.valueOf(recebePEDIDO.getValorTOTAL()));
-		textDATA.setText(recebePEDIDO.getData());
-		textFormadePagamento.setText(String.valueOf(recebePEDIDO.getFormaDEpagamento()));
+		textIDPEDIDO.setText(tipo.getID());
+		textCLIENTE.setText(tipo.getCliente().getNome());
+		textVALORTOTAL.setText(String.valueOf(tipo.getValorTOTAL()));
+		textDATA.setText(tipo.getData());
+		textFormadePagamento.setText(String.valueOf(tipo.getFormaDEpagamento()));
 //		******************************************************************************************************************************************************************************************************************************************
 
 

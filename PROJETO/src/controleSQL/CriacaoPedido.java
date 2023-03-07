@@ -1,17 +1,21 @@
 package controleSQL;
 
-import java.math.BigDecimal;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
-
-import controleSQL.funcoes.BuscaID;
+import java.util.Map;
+import com.google.gson.Gson;
+import controleSQL.funcoes.ProcurarPedido;
 import telas.buscapedidos.pedido;
+import telas.item.item;
 
 public class CriacaoPedido {
 	
 	private boolean criar(pedido pedido) {
+		Map<Integer,item> map = pedido.getTabela();
+		
+		String tabelavendas = new Gson().toJson(map);
+		
 		boolean result = false;
 		
 		ConexaoBancodeDados conect = new ConexaoBancodeDados();
@@ -24,56 +28,47 @@ public class CriacaoPedido {
 		
 		
 		PreparedStatement stmt = conect.getCriarPreparedStatement(sql);
-		ResultSet rs = null;
-		
 		
 		try {
-			rs = stmt.getResultSet();
-			stmt.execute();
-			pedido pedidocriado = new pedido();
-			pedidocriado.setID(rs.getString("ID"));
-			pedidocriado.setCliente(new BuscaID().cliente(rs.getInt("ID_CLIENTE")));
-			
-		} catch (SQLException e) {
-			System.out.println("Erro com ResultSet ou Statement - Pedido");
-			System.err.println(e.getMessage());
+			stmt.setString(1, pedido.getID());
+			stmt.setInt(2, pedido.getCliente().getId());
+			stmt.setString(3, pedido.getFormaDEpagamento().toString());
+			stmt.setDouble(4, pedido.getValorTOTAL());
+			stmt.setString(5, tabelavendas);
+			stmt.setString(6, pedido.getData());
+
+			int resultado = stmt.executeUpdate();
+			if (resultado == 1 ) {
+				System.out.println("Pedido gravado com sucesso");
+			}
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}finally {
 			try {
-				rs.close();
 				stmt.close();
+				result = true;
+				conect.getDesconectar();
 			} catch (SQLException e) {
 				System.out.println("Erro para fechar ResultSet ou Statement - Pedido");
 				System.err.println(e.getMessage());
-			}
 		}
-		
-		
-		
+	}
 		
 		return result;
-		 
-
+	
 	}
 	
-	private boolean getCriar(pedido pedido) {
+	public boolean getCriar(pedido pedido) {
 		return criar(pedido);
 
 	}
 
-	public List<BigDecimal> procurarPEDIDOporMES(int mesparabuscar) {
-		// TODO Auto-generated method stub
-		return null;
+
+	public List<String> procurarPEDIDOporTELEFONE(String tELEFONEescolhido) {
+		return new ProcurarPedido().porTelefone(tELEFONEescolhido);
 	}
 
-	public List<BigDecimal> procurarPEDIDOporTELEFONE(String tELEFONEescolhido) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public pedido buscar(String recebeidPEDIDO) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 
 }

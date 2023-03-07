@@ -1,43 +1,59 @@
 package controleSQL.funcoes;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-
 import controleSQL.ConexaoBancodeDados;
 import telas.clientes.cliente;
 
-public class BuscaID {
+public class ProcurarID {
 	
 	
 	
-	public cliente cliente(int i) {
+	public cliente cliente(String ColunaDeReferencia,String valorreferencia2) {
 		
 		ConexaoBancodeDados conect = new ConexaoBancodeDados();
-	
+		cliente cliente = new cliente();
 		conect.getConectar();
+		ResultSet resultadoset= null;
 		
-		String sql = "SELECT * FROM tbCliente WHERE id = 1;";
+		String sql = "SELECT * FROM tbCliente WHERE "+ColunaDeReferencia+" = ? ;";
 		
-		Statement stmt = conect.getCriarStatement();
+		PreparedStatement stmt = conect.getCriarPreparedStatement(sql);
 		
 		try {
-			ResultSet resultadoset = stmt.executeQuery(sql);
-			cliente cliente = new cliente();
+			stmt.setString(1, valorreferencia2);
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		
+		try {
+			
+			resultadoset = stmt.executeQuery();
+			
 			cliente.setId(resultadoset.getInt("ID"));
 			cliente.setNome(resultadoset.getString("NOME"));
 			cliente.setTelefone(resultadoset.getString("TELEFONE"));
 			cliente.setDatanascimento(resultadoset.getDate("DATA_NASCIMENTO"));
 			cliente.setEmail(resultadoset.getString("EMAIL"));
 			cliente.setQuantidadePEDIDOS(resultadoset.getInt("QUANTIDADE_PEDIDOS"));
-			return cliente;
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
+			
+			try {
+				conect.getDesconectar();
+				stmt.close();
+				resultadoset.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
-		
-		return null;
+		return cliente;
 
 	}
 	

@@ -6,35 +6,26 @@ import java.sql.SQLException;
 import controleSQL.ConexaoBancodeDados;
 
 public class AlterarValorTabela {
-	
-	public void executar(TABELA tabela,String coluna,String quantidade1,String referenciaDeBusca,String quantidade2) {
 
+	public void executar(TABELA tabela, String coluna, int quantidade1, String referenciaDeBusca,int quantidade2) {
 
 		ConexaoBancodeDados conect = new ConexaoBancodeDados();
 		conect.getConectar();
-		
-		String sql = "UPDATE tbCliente SET ? = ? WHERE ? = ?;";
-
+		String sql = String.format("UPDATE %s SET %s = ? WHERE %s = ? ;", tabela.getCaminho(),coluna,referenciaDeBusca);
 		PreparedStatement stmt = conect.getCriarPreparedStatement(sql);
-		System.out.println(stmt);
 		try {
-			//stmt.setString(1, tabela.getCaminho());
-			//stmt.setString(2, coluna);
-			//stmt.setString(3, quantidade1);
-			stmt.setString(4, referenciaDeBusca);
-			stmt.setString(5, quantidade2);
-			System.out.println(stmt);
+			stmt.setInt(1, quantidade1);
+			stmt.setInt(2, quantidade2);
+			
 			int resultado = stmt.executeUpdate();
 			if (resultado == 1) {
-				System.out.println("to aqui");
+				System.out.println("Adicionado quantidade de pedidos ao cliente em +1");
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		
-		
+		}		
+
 	}
-	
-	
+
 }

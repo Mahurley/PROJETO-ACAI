@@ -34,7 +34,7 @@ public class cadastrarCLIENTE {
 	private JTextField textNOME;
 	private JTextField textEMAIL;
 	private JTextField textTELEFONE;
-	protected JTextField textDATANASCIMENTO;
+	private static JTextField textDATANASCIMENTO;
 	private static JLabel lblRESPOSTA;
 	
 
@@ -188,7 +188,7 @@ public class cadastrarCLIENTE {
 			@Override
 			public void insertUpdate(DocumentEvent e) {
 				
-				new TratamentoDataNascimento(e);
+				new TratamentoDataNascimento(e,textDATANASCIMENTO);
 				
 				
 
@@ -210,5 +210,9 @@ public class cadastrarCLIENTE {
 
 	public void setLblRESPOSTA(JLabel lblRESPOSTA) {
 		cadastrarCLIENTE.lblRESPOSTA = lblRESPOSTA;
+	}
+	
+	public static JTextField getDATANASCIMENTO() {
+		return textDATANASCIMENTO;
 	}
 }

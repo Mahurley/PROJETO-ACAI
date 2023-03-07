@@ -4,8 +4,11 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Map;
+
+import controleSQL.CriacaoCliente;
+import controleSQL.CriacaoPedido;
 import recursos.transformaSTRINGemDATE;
-import telas.abrirpedido.formasdepagamento.TABELAS;
+import telas.abrirpedido.formasdepagamento.PAGAMENTOS;
 import telas.clientes.cliente;
 import telas.item.item;
 
@@ -13,7 +16,7 @@ public class pedido {
 	
 	private String ID;
 	private cliente cliente;
-	private TABELAS formaDEpagamento;
+	private PAGAMENTOS formaDEpagamento;
 	private double valorTOTAL;
 	private Map<Integer, item> tabela;
 	private String data;
@@ -26,7 +29,7 @@ public class pedido {
 		this.data = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
 	}
 	
-	public pedido(String iD,cliente cliente, TABELAS formaDEpagamento,double valorTOTAL,String data ,Map<Integer, item> tabela) {
+	public pedido(String iD,cliente cliente, PAGAMENTOS formaDEpagamento,double valorTOTAL,String data ,Map<Integer, item> tabela) {
 		this.ID = iD;
 		this.cliente = cliente;
 		this.formaDEpagamento = formaDEpagamento;
@@ -42,7 +45,7 @@ public class pedido {
 
 	public void criar(pedido criado) {
 		//adiciona(criado);
-		
+		new CriacaoPedido().getCriar(criado);
 	}
 
 	public LocalDate BUSCAporDATA() {
@@ -62,10 +65,10 @@ public class pedido {
 	public void setCliente(cliente cliente) {
 		this.cliente = cliente;
 	}
-	public TABELAS getFormaDEpagamento() {
+	public PAGAMENTOS getFormaDEpagamento() {
 		return formaDEpagamento;
 	}
-	public void setFormaDEpagamento(TABELAS formaDEpagamento) {
+	public void setFormaDEpagamento(PAGAMENTOS formaDEpagamento) {
 		this.formaDEpagamento = formaDEpagamento;
 	}
 	public Map<Integer, item> getTabela() {
@@ -86,6 +89,9 @@ public class pedido {
 	}
 	public String getData() {
 		return data;
+	}
+	public void setData(String data) {
+		this.data = data;
 	}
 	
 	

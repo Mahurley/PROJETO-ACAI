@@ -107,7 +107,7 @@ public class ABRIRPEDIDO extends ABRIRPEDIDO_settings {
 //		******************************************************************************************************************************************************************************************************************************************
 
 		JLabel lblNUMEROPEDIDO = new JLabel("Nº ID -");
-		SimpleDateFormat dateFormat = new SimpleDateFormat("ddMMyyyyHHmmss");
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyddMMHHmmss");
 		String data = dateFormat.format(new Date());
 		lblNUMEROPEDIDO.setText(data);
 		ABRIRPEDIDO_settings.setNUMEROPEDIDO(lblNUMEROPEDIDO.getText());

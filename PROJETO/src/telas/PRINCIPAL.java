@@ -201,7 +201,7 @@ public class PRINCIPAL {
 			public void actionPerformed(ActionEvent e) {
 
 				String[] CALENDARIO = new Calendario().gerandoCalendario();
-				List<BigDecimal> LISTAcomPEDIDOS = new JanelasMostrarPedidos().JanelaMES(CALENDARIO,"CONSULTA PEDIDOS POR MES",JOptionPane.YES_NO_OPTION);
+				List<String> LISTAcomPEDIDOS = new JanelasMostrarPedidos().JanelaMES(CALENDARIO,"CONSULTA PEDIDOS POR MES",JOptionPane.YES_NO_OPTION);
 				System.out.println(LISTAcomPEDIDOS);
 				new JanelasMostrarPedidos().JanelaPEDIDOS(LISTAcomPEDIDOS);
 					
@@ -216,7 +216,7 @@ public class PRINCIPAL {
 		btnProcuraPorTel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				List<BigDecimal> listaCOMpedidos = new JanelasMostrarPedidos().JanelaTELEFONE("CONSULTA PEDIDO POR TELEFONE", JOptionPane.INFORMATION_MESSAGE);
+				List<String> listaCOMpedidos = new JanelasMostrarPedidos().JanelaTELEFONE("CONSULTA PEDIDO POR TELEFONE", JOptionPane.INFORMATION_MESSAGE);
 				
 				new JanelasMostrarPedidos().JanelaPEDIDOStelefone(listaCOMpedidos);
 			}

@@ -73,21 +73,6 @@ public class ABRIRPEDIDO_settings {
 		atualizaVALORtotalnaTELA();
 
 	}
-//	******************************************************************************************************************************************************************************************************************************************
-
-//	public Map<Integer,item> criaMAPparaFINALIZARcompra() {
-//		Map<Integer,item> map = new HashMap<>();
-//		for (int row = 0; row < modelocarrinho.getRowCount(); row++) {
-//			String nome =(String) modelocarrinho.getValueAt(row, 0);
-//			Double valor = (Double) modelocarrinho.getValueAt(row, 1);
-//			int quantidade = (Integer) modelocarrinho.getValueAt(row, 2);
-//			int id = (Integer) modelocarrinho.getValueAt(row, 3);
-//			map.put(id, new item(id, nome, valor,quantidade));
-//		}
-//		
-//		return map;
-//	}
-//	******************************************************************************************************************************************************************************************************************************************
 
 	public static void atualizaVALORtotalnaTELA() {
 		Double total = 0.0;
