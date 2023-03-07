@@ -7,6 +7,7 @@ Versão 1.13 - 07/03
 
 .Atualização para SQL o banco de dados, ainda com alguns ajustes
 faltando.
+
 .Retirado o .CSV no momento sendo levado em conta para uso de backup
 futuramente, ou até logs.
 
