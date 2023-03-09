@@ -10,10 +10,10 @@ import java.util.Map;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import controleSQL.ConexaoBancodeDados;
+import controleSQL.criacao.ConexaoBancodeDados;
 import telas.item.item;
-import telas.abrirpedido.formasdepagamento.PAGAMENTOS;
-import telas.buscapedidos.pedido;
+import telas.pedido.pedido;
+import telas.pedido.FormaDePagamento.PAGAMENTOS;
 import telas.clientes.cliente;
 
 public class BuscaTodosDaTabela {
@@ -46,7 +46,7 @@ public class BuscaTodosDaTabela {
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 			System.out.println("Erro ao buscar ResultSet - item");
-			return null;
+		
 		} finally {
 			try {
 				rs.close();
@@ -107,7 +107,7 @@ public class BuscaTodosDaTabela {
 
 	private List<pedido> pedido() {
 		ConexaoBancodeDados conect = new ConexaoBancodeDados();
-		pedido pedido = new pedido();
+		
 		ResultSet rs = null;
 		List<pedido> lista = new ArrayList<pedido>();
 		conect.getConectar();
@@ -118,36 +118,35 @@ public class BuscaTodosDaTabela {
 		try {
 			stmt.execute(sql);
 		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+			System.out.println("Erro pedido - BuscaTodosDaTabela");
+			System.out.println(e1.getMessage());
 		}
 		try {
 			rs = stmt.getResultSet();
 			while (rs.next()) {
-
+				pedido pedido = new pedido();
 				cliente cliente = new ProcurarID().cliente("ID", rs.getString("ID_CLIENTE"));
 				pedido.setCliente(cliente);
 				pedido.setValorTOTAL(rs.getDouble("VALORTOTAL"));
 				pedido.setID(rs.getString("ID"));
-				pedido.setData(rs.getString("DATA"));
+				pedido.setData(rs.getTimestamp("DATA"));
 				pedido.setFormaDEpagamento(PAGAMENTOS.valueOf(rs.getString("FORMA_DE_PAGAMENTO")));
 				pedido.setTabela(new Gson().fromJson(rs.getString("ITEM_PEDIDO"), new TypeToken<Map<Integer, item>>() {
 				}.getType()));
 				lista.add(pedido);
-				System.out.println("pedido: " + pedido.getID());
 			}
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("Erro  pedido - BuscaTodosDaTabela");
+			System.out.println(e.getMessage());
 		} finally {
 			try {
 				rs.close();
 				stmt.close();
 				conect.getDesconectar();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				System.out.println("Erro .close pedido - BuscaTodosDaTabela");
+				System.out.println(e.getMessage());
 			}
 
 		}

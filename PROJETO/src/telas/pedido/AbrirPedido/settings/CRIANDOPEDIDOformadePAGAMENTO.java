@@ -1,10 +1,10 @@
-package telas.abrirpedido.settings;
+package telas.pedido.AbrirPedido.settings;
 
+import controleSQL.criacao.TABELA;
 import controleSQL.funcoes.AlterarValorTabela;
-import controleSQL.funcoes.TABELA;
-import telas.abrirpedido.ABRIRPEDIDO_settings;
-import telas.abrirpedido.formasdepagamento.PAGAMENTOS;
-import telas.buscapedidos.pedido;
+import telas.pedido.pedido;
+import telas.pedido.AbrirPedido.ABRIRPEDIDO_settings;
+import telas.pedido.FormaDePagamento.PAGAMENTOS;
 
 public class CRIANDOPEDIDOformadePAGAMENTO extends ABRIRPEDIDO_settings{
 

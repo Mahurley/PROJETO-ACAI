@@ -3,7 +3,8 @@ package controleSQL.funcoes;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import controleSQL.ConexaoBancodeDados;
+import controleSQL.criacao.ConexaoBancodeDados;
+import controleSQL.criacao.TABELA;
 
 public class AlterarValorTabela {
 
@@ -18,13 +19,20 @@ public class AlterarValorTabela {
 			stmt.setInt(2, quantidade2);
 			
 			int resultado = stmt.executeUpdate();
-			if (resultado == 1) {
-				System.out.println("Adicionado quantidade de pedidos ao cliente em +1");
+			if (resultado == 0) {
+				new SQLException("Erro ao somar quantidade de pedidos - AlterarValorTabela");
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}		
+			new SQLException("Erro - AlterarValorTabela");
+		}	finally {
+			try {
+				conect.getDesconectar();
+				stmt.close();
+			} catch (SQLException e) {
+				new SQLException("Erro ao .close - AlterarValorTabela");
+			}
+			
+		}
 
 	}
 

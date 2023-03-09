@@ -1,32 +1,27 @@
-package telas.buscapedidos.mostrarPEDIDOS;
+package telas.pedido.PopUpDeJanelas;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
-import java.util.Map;
-
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
-import controleSQL.CriacaoPedido;
-import telas.buscapedidos.BUSCAPEDIDO;
-import telas.buscapedidos.pedido;
-import telas.item.item;
+
+import controleSQL.criacao.CriacaoPedido;
+import telas.pedido.BuscaPedido.BUSCAPEDIDO;
 
 public class JanelasMostrarPedidos {
 
 	public List<String> JanelaMES(String[] cALENDARIO, String descricao, int optionType) {
-		JComboBox comboBox = new JComboBox(cALENDARIO);
+		JComboBox<String> comboBox = new JComboBox<String>(cALENDARIO);
 		List<String> listaCOMpedidos = new ArrayList<String>();
 		int MESescolhido = JOptionPane.showConfirmDialog(null, comboBox, descricao, optionType);
 		if (MESescolhido == JOptionPane.YES_OPTION) {
 			int mesparabuscar = comboBox.getSelectedIndex() + 1;
-			//listaCOMpedidos = new CriacaoPedido().procurarPEDIDOporMES(mesparabuscar);
+			listaCOMpedidos = new CriacaoPedido().procurarPEDIDOporMES(mesparabuscar);
+			return listaCOMpedidos;
 		} else {
 			throw new InputMismatchException("Nenhum mes selecionado");
 		}
-
-		return listaCOMpedidos;
 	}
 
 	public void JanelaPEDIDOS(List<String> listaCOMpedidos) {
@@ -53,8 +48,8 @@ public class JanelasMostrarPedidos {
 			new InputMismatchException("CAMPO VAZIO TELEFONE");
 		} else {
 			List<String> pedido = new CriacaoPedido().procurarPEDIDOporTELEFONE(TELEFONEescolhido);
-			
-			listaCOMpedidos = pedido ;
+
+			listaCOMpedidos = pedido;
 			return listaCOMpedidos;
 		}
 		return null;
@@ -65,14 +60,12 @@ public class JanelasMostrarPedidos {
 			new InputMismatchException("Lista chegando com valor nulo");
 			return false;
 		}
-		JComboBox comboBoxPEDIDOS = new JComboBox(listaCOMpedidos.toArray(new String[0]));
+		JComboBox<String> comboBoxPEDIDOS = new JComboBox<String>(listaCOMpedidos.toArray(new String[0]));
 		int IDescolhido = JOptionPane.showConfirmDialog(null, comboBoxPEDIDOS, "PEDIDOS DO TELEFONE SELECIONADO | ",
 				JOptionPane.YES_NO_OPTION);
 		if (IDescolhido == JOptionPane.YES_OPTION) {
 			if (comboBoxPEDIDOS.getSelectedItem() != null) {
-				
 				String ID = comboBoxPEDIDOS.getSelectedItem().toString();
-				
 				if (ID != null) {
 					BUSCAPEDIDO.main(ID);
 					return true;

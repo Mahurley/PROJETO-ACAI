@@ -1,4 +1,4 @@
-package telas.abrirpedido.formasdepagamento;
+package telas.pedido.FormaDePagamento;
 
 public enum PAGAMENTOS {
 	

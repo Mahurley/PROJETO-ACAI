@@ -1,4 +1,4 @@
-package controleSQL.funcoes;
+package controleSQL.criacao;
 
 public enum TABELA {
 	

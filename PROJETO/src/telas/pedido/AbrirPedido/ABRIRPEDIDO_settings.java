@@ -1,4 +1,4 @@
-package telas.abrirpedido;
+package telas.pedido.AbrirPedido;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -45,7 +45,7 @@ public class ABRIRPEDIDO_settings {
 	};
 //	******************************************************************************************************************************************************************************************************************************************
 
-	public static void remove() {
+	public static void Remove() {
 		if ((Integer) modelocarrinho.getValueAt(tablecarrinho.getSelectedRow(), 2) == 1) {
 			modelocarrinho.removeRow(tablecarrinho.getSelectedRow());
 			atualizaVALORtotalnaTELA();
@@ -56,7 +56,7 @@ public class ABRIRPEDIDO_settings {
 	}
 //	******************************************************************************************************************************************************************************************************************************************
 
-	public static item buscaITEMselecionadoJTABLE() {
+	public static item BuscaItemSelecionadoJTABLE() {
 		List<item> nova = new ArrayList<item>(new BuscaTodosDaTabela().getItem());
 		nova.sort(Comparator.comparing(item::getNome));
 		return nova.get(ABRIRPEDIDO_settings.getTable().getSelectedRow());
@@ -64,11 +64,11 @@ public class ABRIRPEDIDO_settings {
 	}
 //	******************************************************************************************************************************************************************************************************************************************
 
-	public static void addCARRINHO(item recebe) {
+	public void addCARRINHO(item recebe) {
 		Object[] gravador = ABRIRPEDIDO.GETcriaOBJETO(recebe);
-		procuraSEexisteCASOSIMeleADICIONA(gravador);
-		procuraSEexisteALGUMcadastro(gravador);
-		procuraPARAgravarNOcarrinho(gravador);
+		ProcuraSeExisteCasoSimEleAdiciona(gravador);
+		ProcuraSeExisteAlgumCadastro(gravador);
+		ProcuraParaGravarNoCarrinho(gravador);
 		conta = 0;
 		atualizaVALORtotalnaTELA();
 
@@ -90,7 +90,7 @@ public class ABRIRPEDIDO_settings {
 	}
 //	******************************************************************************************************************************************************************************************************************************************
 
-	public static void procuraSEexisteCASOSIMeleADICIONA(Object[] gravador) {
+	public static void ProcuraSeExisteCasoSimEleAdiciona(Object[] gravador) {
 		for (int row = 0; row < modelocarrinho.getRowCount(); row++) {
 			if (modelocarrinho.getValueAt(row, 0).equals(gravador[0])) {
 				int val = (Integer) modelocarrinho.getValueAt(row, 2);
@@ -103,7 +103,7 @@ public class ABRIRPEDIDO_settings {
 	}
 //	******************************************************************************************************************************************************************************************************************************************
 
-	public static void procuraSEexisteALGUMcadastro(Object[] gravador) {
+	public static void ProcuraSeExisteAlgumCadastro(Object[] gravador) {
 		if (modelocarrinho.getRowCount() == 0) {
 			modelocarrinho.addRow(gravador);
 		}
@@ -111,12 +111,11 @@ public class ABRIRPEDIDO_settings {
 	}
 //	******************************************************************************************************************************************************************************************************************************************
 
-	public static void procuraPARAgravarNOcarrinho(Object[] gravador) {
+	public static void ProcuraParaGravarNoCarrinho(Object[] gravador) {
 
 		for (int row = 0; row < modelocarrinho.getRowCount(); row++) {
 			if (modelocarrinho.getValueAt(row, 0).equals(gravador[0])) {
 				conta++;
-				System.out.println("conta: " + conta);
 			}
 
 		}
@@ -126,30 +125,6 @@ public class ABRIRPEDIDO_settings {
 		}
 
 	}
-//	******************************************************************************************************************************************************************************************************************************************
-
-//	public static void CRIANDOPEDIDOformadePAGAMENTO(PAGAMENTOS pagamento, pedido novo) {
-//		listas.getListaprincipalcliente().remove(novo.getCliente());
-//		int totalpedido = novo.getCliente().getQuantidadePEDIDOS()+1;
-//		novo.getCliente().setQuantidadePEDIDOS(totalpedido);
-//		listas.getListaprincipalcliente().add(novo.getCliente());
-//		System.out.println("pedido criado com sucesso");
-//		
-//		try {
-//			new TERCEIRO_aposconferirliberadoCADASTRO(new tiposCLIENTE(), novo.getCliente());
-//		} catch (IOException e1) {
-//			e1.printStackTrace();
-//		}
-//		ABRIRPEDIDO_settings.getModelocarrinho().setRowCount(0);
-//		ABRIRPEDIDO_settings.getModelo().setRowCount(0);
-//		ABRIRPEDIDO_settings.getTablecarrinho().removeAll();
-//		ABRIRPEDIDO_settings.getTable().removeAll();
-//		ABRIRPEDIDO_settings.setNUMEROPEDIDO("");
-//
-//	}
-	
-//	******************************************************************************************************************************************************************************************************************************************
-
 	public static JTable getTablecarrinho() {
 		return tablecarrinho;
 	}

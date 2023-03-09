@@ -1,4 +1,4 @@
-package controleSQL;
+package controleSQL.criacao;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 

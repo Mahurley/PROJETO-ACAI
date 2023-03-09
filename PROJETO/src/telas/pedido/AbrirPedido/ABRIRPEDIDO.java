@@ -1,9 +1,11 @@
-package telas.abrirpedido;
+package telas.pedido.AbrirPedido;
 
+import recursos.criarOBJETO;
 import recursos.horarioATUALIZADO;
-import telas.abrirpedido.formasdepagamento.formaDEpagamento;
-import telas.buscapedidos.pedido;
 import telas.item.item;
+import telas.pedido.pedido;
+import telas.pedido.FormaDePagamento.formaDEpagamento;
+
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JTable;
@@ -74,7 +76,7 @@ public class ABRIRPEDIDO extends ABRIRPEDIDO_settings {
 		btnADICIONA.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println(getTablecarrinho().getSelectedRow());
-				addCARRINHO(buscaITEMselecionadoJTABLE());
+				addCARRINHO(BuscaItemSelecionadoJTABLE());
 
 			}
 		});
@@ -100,7 +102,7 @@ public class ABRIRPEDIDO extends ABRIRPEDIDO_settings {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("removendo item:" + getTable().getSelectedRow());
 
-				remove();
+				Remove();
 			}
 		});
 
@@ -122,7 +124,7 @@ public class ABRIRPEDIDO extends ABRIRPEDIDO_settings {
 		getTablecarrinho().addKeyListener(new KeyAdapter() {
 			public void keyReleased(java.awt.event.KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_DELETE)
-					remove();
+					Remove();
 			}
 		});
 
@@ -257,7 +259,7 @@ public class ABRIRPEDIDO extends ABRIRPEDIDO_settings {
 			public void mouseClicked(MouseEvent e) {
 
 				if (e.getClickCount() == 2) {
-					addCARRINHO(buscaITEMselecionadoJTABLE());
+					addCARRINHO(BuscaItemSelecionadoJTABLE());
 				}
 
 			}
@@ -293,7 +295,7 @@ public class ABRIRPEDIDO extends ABRIRPEDIDO_settings {
 //	******************************************************************************************************************************************************************************************************************************************
 
 	private void ADDitemJTABLE(item recebe) {
-		getModelo().addRow(criaOBJETO(recebe));
+		getModelo().addRow(new criarOBJETO().criarITEMcarrinho(recebe));
 
 	}
 
@@ -310,19 +312,8 @@ public class ABRIRPEDIDO extends ABRIRPEDIDO_settings {
 
 //	******************************************************************************************************************************************************************************************************************************************
 
-	private static Object[] criaOBJETO(item recebe) {
-		Object[] gravador = new Object[4];
-		gravador[0] = recebe.getNome();
-		gravador[1] = recebe.getValor();
-		gravador[2] = 1;
-		gravador[3] = recebe.getId();
-		return gravador;
-
-	}
-//	******************************************************************************************************************************************************************************************************************************************
-
 	public static Object[] GETcriaOBJETO(item gravador) {
-		return criaOBJETO(gravador);
+		return new criarOBJETO().criarITEMcarrinho(gravador);
 	}
 
 	public static double getTotalPEDIDO() {
@@ -338,15 +329,16 @@ public class ABRIRPEDIDO extends ABRIRPEDIDO_settings {
 	private Map<Integer, item> criaMAPparaFINALIZARcompra() {
 		Map<Integer, item> novomap = new HashMap<>();
 		for (int i = 0; i < getModelocarrinho().getRowCount(); i++) {
+			
 			String nome = (String) getModelocarrinho().getValueAt(i, 0);
 			double valor = (double) getModelocarrinho().getValueAt(i, 1);
 			int quantidade = (int) getModelocarrinho().getValueAt(i, 2);
 			int id = (int) getModelocarrinho().getValueAt(i, 3);
 			item carinha = new item(id, nome, valor, quantidade);
 			novomap.put(carinha.getId(), carinha);
-			System.out.println("gravamos no pedido final : " + carinha.getNome() + " com ID :" + carinha.getId());
 
 		}
+		
 		return novomap;
 	}
 }

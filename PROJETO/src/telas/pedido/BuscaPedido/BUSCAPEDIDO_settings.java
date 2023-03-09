@@ -1,4 +1,4 @@
-package telas.buscapedidos;
+package telas.pedido.BuscaPedido;
 
 
 import java.util.ArrayList;
@@ -11,8 +11,10 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import controleSQL.funcoes.BuscaTodosDaTabela;
+import recursos.criarOBJETO;
 import telas.clientes.cliente;
 import telas.item.item;
+import telas.pedido.pedido;
 
 public class BUSCAPEDIDO_settings {
 
@@ -37,26 +39,31 @@ public class BUSCAPEDIDO_settings {
 	
 //	******************************************************************************************************************************************************************************************************************************************
 	protected static pedido buscaPEDIDO(String id) {
-			List<pedido> listapedido = new BuscaTodosDaTabela().getPedido();
-			Map<String,pedido> map = new HashMap<>();
-			for (pedido pedido : listapedido) {
-				map.put(pedido.getID(), pedido);
-				System.out.println("gravei pedido :" + pedido.getID());
+			List<pedido> listadepedidos = new BuscaTodosDaTabela().getPedido();
+			Map<String,pedido> mapDePedidos = new HashMap<>();
+			
+			
+			for (pedido pedido : listadepedidos) {
+				mapDePedidos.put(pedido.getID(), pedido);
+				System.out.println("Pedido ID: " + pedido.getID() + " | Nome: " + pedido.getCliente().getNome());
 			}
-			Map<Integer,item> novo = map.get(id).getTabela();
+			
+			
+			
+			Map<Integer,item> novo = mapDePedidos.get(id).getTabela();
 			List<item> cria = new ArrayList<>(novo.values());
 			for(item cada : cria) {
 				criarBUSCApedido(cada);
 			}
 		
-		return map.get(id);
+		return mapDePedidos.get(id);
 	}
 	
 	
 //	******************************************************************************************************************************************************************************************************************************************
 
 	private static void criarBUSCApedido(item recebe) {
-		Object[] gravador = criaOBJETOitem(recebe);
+		Object[] gravador = new criarOBJETO().criarITEM(recebe);
 		procuraSEexisteCASOSIMeleADICIONA(gravador);
 		procuraSEexisteALGUMcadastro(gravador);
 		procuraPARAgravarNObuscaPEDIDO(gravador);
@@ -99,18 +106,6 @@ public class BUSCAPEDIDO_settings {
 			modelobuscapedido.addRow(gravador);
 
 		}
-
-	}
-//	*****************************************************************************************************************************************************************************************************************************************
-	
-
-	private static Object[] criaOBJETOitem(item recebe) {
-		Object[] gravador = new Object[4];
-		gravador[0] = recebe.getNome();
-		gravador[1] = recebe.getValor();
-		gravador[2] = recebe.getQuantidade();
-		gravador[3] = recebe.getId();
-		return gravador;
 
 	}
 //	******************************************************************************************************************************************************************************************************************************************

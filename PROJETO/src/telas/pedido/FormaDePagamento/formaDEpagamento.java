@@ -1,16 +1,20 @@
-package telas.abrirpedido.formasdepagamento;
+package telas.pedido.FormaDePagamento;
 
 import java.awt.EventQueue;
 import java.awt.Image;
 import javax.swing.JFrame;
 import javax.swing.SpringLayout;
-import controleSQL.CriacaoPedido;
+
+import controleSQL.criacao.CriacaoPedido;
+
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
-import telas.abrirpedido.ABRIRPEDIDO;
-import telas.abrirpedido.ABRIRPEDIDO_settings;
-import telas.abrirpedido.settings.CRIANDOPEDIDOformadePAGAMENTO;
-import telas.buscapedidos.pedido;
+
+import telas.pedido.pedido;
+import telas.pedido.AbrirPedido.ABRIRPEDIDO;
+import telas.pedido.AbrirPedido.ABRIRPEDIDO_settings;
+import telas.pedido.AbrirPedido.settings.CRIANDOPEDIDOformadePAGAMENTO;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.ActionListener;

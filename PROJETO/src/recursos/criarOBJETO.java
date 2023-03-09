@@ -6,7 +6,7 @@ public class criarOBJETO {
 	
 //	******************************************************************************************************************************************************************************************************************************************
 
-	public static Object[] criarITEMcarrinho(item recebe) {
+	public Object[] criarITEMcarrinho(item recebe) {
 		Object[] gravador = new Object[4];
 		gravador[0] = recebe.getNome();
 		gravador[1] = recebe.getValor();
@@ -19,7 +19,7 @@ public class criarOBJETO {
 //	*****************************************************************************************************************************************************************************************************************************************
 	
 
-	public static Object[] criarITEM(item recebe) {
+	public Object[] criarITEM(item recebe) {
 		Object[] gravador = new Object[4];
 		gravador[0] = recebe.getNome();
 		gravador[1] = recebe.getValor();

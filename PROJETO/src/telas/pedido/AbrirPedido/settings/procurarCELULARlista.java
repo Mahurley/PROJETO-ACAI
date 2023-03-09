@@ -1,9 +1,9 @@
-package telas.abrirpedido.settings;
+package telas.pedido.AbrirPedido.settings;
 
 
 import controleSQL.funcoes.BuscaTodosDaTabela;
-import telas.abrirpedido.ABRIRPEDIDO_settings;
 import telas.clientes.cliente;
+import telas.pedido.AbrirPedido.ABRIRPEDIDO_settings;
 
 public class procurarCELULARlista{
 

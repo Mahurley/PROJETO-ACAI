@@ -1,6 +1,7 @@
 package telas.clientes;
-import java.util.Date;
-import controleSQL.CriacaoCliente;
+import java.sql.Date;
+
+import controleSQL.criacao.CriacaoCliente;
 
 public class cliente implements Comparable<cliente>{
 	
@@ -11,7 +12,7 @@ public class cliente implements Comparable<cliente>{
 	private int id;
 	private int quantidadePEDIDOS = 0;
 	
-	public cliente(String nome, java.util.Date date, String email, String telefone) {
+	public cliente(String nome, Date date, String email, String telefone) {
 		this.nome = nome;
 		this.datanascimento = date;
 		this.email = email;
@@ -33,11 +34,9 @@ public class cliente implements Comparable<cliente>{
 	}
 	
 	public cliente() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public void criar(cliente criar) {
-		//adiciona(criar);
 		new CriacaoCliente().getCriar(criar);
 	}
 	

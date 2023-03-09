@@ -1,4 +1,4 @@
-package controleSQL;
+package controleSQL.criacao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

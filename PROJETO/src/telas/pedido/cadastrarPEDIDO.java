@@ -1,26 +1,27 @@
-package telas.abrirpedido;
+package telas.pedido;
 
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import java.awt.Font;
+import javax.swing.JTextField;
+import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SwingConstants;
-import controleSQL.CriacaoCliente;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+
+import controleSQL.criacao.CriacaoCliente;
+import controleSQL.funcoes.TransformaDATE;
 import recursos.timerSEGUNDOS;
 import telas.clientes.TratamentoDataNascimento;
 import telas.clientes.cliente;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.JTextField;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.awt.event.ActionEvent;
+import telas.pedido.AbrirPedido.ABRIRPEDIDO_settings;
 
 public class cadastrarPEDIDO {
 
@@ -96,8 +97,6 @@ public class cadastrarPEDIDO {
 		JButton btnADICIONAR = new JButton("ADICIONAR !");
 		btnADICIONAR.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				Date data = null;
 				if (textNOME.getText().isEmpty() | textTELEFONE.getText().isEmpty() | textEMAIL.getText().isEmpty()
 						| textDATANASCIMENTO.getText().isEmpty() | textNOME.getText().isBlank()
 						| textTELEFONE.getText().isBlank() | textEMAIL.getText().isBlank()
@@ -106,49 +105,48 @@ public class cadastrarPEDIDO {
 
 				} else {
 
-					String formato = textDATANASCIMENTO.getText();
-					SimpleDateFormat simples = new SimpleDateFormat("dd/MM/yyyy");
+					String nova = textDATANASCIMENTO.getText().replaceAll("/", "-");
+					TransformaDATE td = new TransformaDATE();
+					java.sql.Date dataSql = td.preparaDateSQL(td.preparaDateUtil(nova));
 
-					try {
-						data = simples.parse(formato);
-						System.out.println("data formatada" + data);
-					} catch (ParseException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					} finally {
-						cliente clientegerado = new cliente(textNOME.getText().toUpperCase(), data, textEMAIL.getText(),
-								textTELEFONE.getText());
-						new CriacaoCliente().getCriar(clientegerado);
-
+					cliente clientegerado = new cliente(textNOME.getText().toUpperCase(), dataSql, textEMAIL.getText(),
+							textTELEFONE.getText());
+					CriacaoCliente cc = new CriacaoCliente();
+					boolean respota = cc.getCriar(clientegerado);
+					if (respota) {
 						lblRESPOSTA
 								.setText(String.format("Cliente: %s | Adicionado com sucesso !", textNOME.getText()));
 						ABRIRPEDIDO_settings.setCLIENTEachado(clientegerado);
 						new timerSEGUNDOS(2000);
 						frmCadastrarItem.dispose();
-						telas.abrirpedido.ABRIRPEDIDO.main(null);
+						telas.pedido.AbrirPedido.ABRIRPEDIDO.main(null);
+					} else {
+						lblRESPOSTA
+						.setText(String.format("ERRO AO ADICIONAR CLIENTE", textNOME.getText()));
 					}
+
 				}
 
 			}
-			
+
 		});
 		textDATANASCIMENTO.getDocument().addDocumentListener(new DocumentListener() {
-			
+
 			@Override
 			public void removeUpdate(DocumentEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			@Override
 			public void insertUpdate(DocumentEvent e) {
-					new TratamentoDataNascimento(e,textDATANASCIMENTO);
+				new TratamentoDataNascimento(e, textDATANASCIMENTO);
 			}
-			
+
 			@Override
 			public void changedUpdate(DocumentEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
 		});
 //		******************************************************************************************************************************************************************************************************************************************

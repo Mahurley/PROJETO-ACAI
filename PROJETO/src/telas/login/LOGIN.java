@@ -141,7 +141,7 @@ public class LOGIN extends JFrame implements DADOS {
 					} catch (InterruptedException e1) {
 						e1.printStackTrace();
 					}
-					telas.PRINCIPAL.main(null);
+					telas.MAIN.main(null);
 					dispose();
 				} else {
 					labelRESPOSTA.setText("LOGIN/SENHA INCORRETO");

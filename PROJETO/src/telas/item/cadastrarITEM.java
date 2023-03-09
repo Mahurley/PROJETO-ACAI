@@ -6,13 +6,12 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
-
-import controleSQL.CriacaoItem;
-
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
+
+import controleSQL.criacao.CriacaoItem;
 
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
@@ -76,8 +75,8 @@ public class cadastrarITEM {
 
 		JLabel lblNewLabel_1_2 = new JLabel("CATEGORIA");
 
-		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] { "BEBIDAS", "COMPLEMENTOS", "ADICIONAIS", "COMBO" }));
+		JComboBox<String> comboBox = new JComboBox<String>();
+		comboBox.setModel(new DefaultComboBoxModel<String>(new String[] { "BEBIDAS", "COMPLEMENTOS", "ADICIONAIS", "COMBO" }));
 		
 
 		JLabel lblNewLabel_1_1_1 = new JLabel("CONTROLE DE ESTOQUE");

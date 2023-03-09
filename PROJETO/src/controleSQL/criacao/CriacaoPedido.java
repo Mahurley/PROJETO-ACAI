@@ -1,13 +1,14 @@
-package controleSQL;
+package controleSQL.criacao;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 import com.google.gson.Gson;
+
 import controleSQL.funcoes.ProcurarPedido;
-import telas.buscapedidos.pedido;
 import telas.item.item;
+import telas.pedido.pedido;
 
 public class CriacaoPedido {
 	
@@ -35,7 +36,7 @@ public class CriacaoPedido {
 			stmt.setString(3, pedido.getFormaDEpagamento().toString());
 			stmt.setDouble(4, pedido.getValorTOTAL());
 			stmt.setString(5, tabelavendas);
-			stmt.setString(6, pedido.getData());
+			stmt.setTimestamp(6, pedido.getData());
 
 			int resultado = stmt.executeUpdate();
 			if (resultado == 1 ) {
@@ -67,6 +68,10 @@ public class CriacaoPedido {
 
 	public List<String> procurarPEDIDOporTELEFONE(String tELEFONEescolhido) {
 		return new ProcurarPedido().porTelefone(tELEFONEescolhido);
+	}
+
+	public List<String> procurarPEDIDOporMES(int mesparabuscar) {
+		return new ProcurarPedido().porMes(mesparabuscar);
 	}
 
 

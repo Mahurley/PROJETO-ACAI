@@ -1,32 +1,23 @@
 package telas.clientes;
 
 import java.awt.EventQueue;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
 import java.awt.Font;
-import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
-
-import controleSQL.CriacaoCliente;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.SwingConstants;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-import javax.swing.text.BadLocationException;
-import javax.swing.text.Document;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.InputMethodEvent;
-import java.awt.event.InputMethodListener;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.stream.IntStream;
-import java.awt.event.ActionEvent;
+
+import controleSQL.criacao.CriacaoCliente;
+import controleSQL.funcoes.TransformaDATE;
 
 public class cadastrarCLIENTE {
 
@@ -36,7 +27,6 @@ public class cadastrarCLIENTE {
 	private JTextField textTELEFONE;
 	private static JTextField textDATANASCIMENTO;
 	private static JLabel lblRESPOSTA;
-	
 
 	/**
 	 * Launch the application.
@@ -98,7 +88,7 @@ public class cadastrarCLIENTE {
 		JButton btnADICIONAR = new JButton("ADICIONAR !");
 		btnADICIONAR.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Date data = null;
+
 				if (textNOME.getText().isEmpty() | textTELEFONE.getText().isEmpty()
 						| textDATANASCIMENTO.getText().isEmpty() | textEMAIL.getText().isEmpty()
 						| textNOME.getText().isBlank() | textTELEFONE.getText().isBlank()
@@ -106,12 +96,22 @@ public class cadastrarCLIENTE {
 					getLblRESPOSTA().setText("EXISTE CAMPO VAZIO");
 
 				} else {
+					String valor = textDATANASCIMENTO.getText().replaceAll("/", "-");
+					TransformaDATE td = new TransformaDATE();
+					java.sql.Date dataSql = td.preparaDateSQL(td.preparaDateUtil(valor));
 
-					// new CriacaoCliente().getCriar(new cliente(textNOME.getText().toUpperCase(),
-					// data,textEMAIL.getText(), textTELEFONE.getText()));
+					CriacaoCliente cc = new CriacaoCliente();
 
-					getLblRESPOSTA()
-							.setText(String.format("Cliente: %s | Adicionado com sucesso !", textNOME.getText()));
+					boolean resposta = cc.getCriar(new cliente(textNOME.getText().toUpperCase(), dataSql, textEMAIL.getText(),
+							textTELEFONE.getText()));
+					if (resposta) {
+						getLblRESPOSTA()
+								.setText(String.format("Cliente: %s | Adicionado com sucesso !", textNOME.getText()));
+					}else {
+						getLblRESPOSTA()
+						.setText(String.format("ERRO ao adicionar!"));
+					}
+
 				}
 
 			}
@@ -177,7 +177,7 @@ public class cadastrarCLIENTE {
 	}
 
 	private void datanascimento() {
-			textDATANASCIMENTO.getDocument().addDocumentListener(new DocumentListener() {
+		textDATANASCIMENTO.getDocument().addDocumentListener(new DocumentListener() {
 
 			@Override
 			public void removeUpdate(DocumentEvent e) {
@@ -187,22 +187,18 @@ public class cadastrarCLIENTE {
 
 			@Override
 			public void insertUpdate(DocumentEvent e) {
-				
-				new TratamentoDataNascimento(e,textDATANASCIMENTO);
-				
-				
+
+				new TratamentoDataNascimento(e, textDATANASCIMENTO);
 
 			}
 
 			@Override
 			public void changedUpdate(DocumentEvent e) {
-				
+
 			}
 		});
-			
 
 	}
-	
 
 	public static JLabel getLblRESPOSTA() {
 		return lblRESPOSTA;
@@ -211,7 +207,7 @@ public class cadastrarCLIENTE {
 	public void setLblRESPOSTA(JLabel lblRESPOSTA) {
 		cadastrarCLIENTE.lblRESPOSTA = lblRESPOSTA;
 	}
-	
+
 	public static JTextField getDATANASCIMENTO() {
 		return textDATANASCIMENTO;
 	}

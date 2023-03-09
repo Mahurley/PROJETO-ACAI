@@ -12,22 +12,23 @@ import javax.swing.JOptionPane;
 import javax.swing.JMenu;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
+
+import controleSQL.OrdemLeituraDeDadosDB;
 import recursos.Calendario;
 import recursos.horarioATUALIZADO;
-import telas.abrirpedido.settings.procurarCELULARlista;
-import telas.buscapedidos.mostrarPEDIDOS.JanelasMostrarPedidos;
 import telas.login.DADOS;
+import telas.pedido.AbrirPedido.settings.procurarCELULARlista;
+import telas.pedido.PopUpDeJanelas.JanelasMostrarPedidos;
 
 import javax.swing.JLabel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JPanel;
 
-public class PRINCIPAL {
+public class MAIN {
 
 	JFrame frmPrincipalAcai;
 
@@ -37,7 +38,7 @@ public class PRINCIPAL {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					PRINCIPAL window = new PRINCIPAL();
+					MAIN window = new MAIN();
 					window.frmPrincipalAcai.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -48,8 +49,8 @@ public class PRINCIPAL {
 
 //	******************************************************************************************************************************************************************************************************************************************
 
-	public PRINCIPAL() throws IOException {
-
+	public MAIN() throws IOException {
+		new OrdemLeituraDeDadosDB();
 		initialize();
 	}
 
@@ -72,13 +73,13 @@ public class PRINCIPAL {
 						"CLIENTE GOSTARIA DE SE CADASTRAR PARA TER AS PROMOÇÕES?",
 						"CLIENTE COM CADASTRO PARTICIPA DE TODAS AS PROMOÇÕES", JOptionPane.YES_NO_OPTION);
 				if (opcao == JOptionPane.YES_OPTION) {
-					telas.abrirpedido.cadastrarPEDIDO.main(null);
+					telas.pedido.cadastrarPEDIDO.main(null);
 				} else {
 					String celular = JOptionPane.showInputDialog(null, "CELULAR CADASTRADO", "BUSCA CLIENTE CADASTRADO",
 							JOptionPane.QUESTION_MESSAGE);
 
 					if (new procurarCELULARlista().procurar(celular)) {
-						telas.abrirpedido.ABRIRPEDIDO.main(null);
+						telas.pedido.AbrirPedido.ABRIRPEDIDO.main(null);
 						System.out.println();
 					}
 
@@ -188,7 +189,7 @@ public class PRINCIPAL {
 				if(IDpedido == null || IDpedido.isBlank()){
 					new InputMismatchException("Campo vazio");
 				}else {
-					telas.buscapedidos.BUSCAPEDIDO.main(IDpedido);
+					telas.pedido.BuscaPedido.BUSCAPEDIDO.main(IDpedido);
 					
 				}
 				System.out.println("pasei aqui");

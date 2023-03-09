@@ -1,4 +1,4 @@
-package telas.buscapedidos;
+package telas.pedido.BuscaPedido;
 
 import java.awt.EventQueue;
 
@@ -6,11 +6,13 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
-import controleSQL.funcoes.ProcurarPedido;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
+
+import telas.pedido.pedido;
+
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
 
@@ -176,7 +178,7 @@ public class BUSCAPEDIDO extends BUSCAPEDIDO_settings {
 		textIDPEDIDO.setText(tipo.getID());
 		textCLIENTE.setText(tipo.getCliente().getNome());
 		textVALORTOTAL.setText(String.valueOf(tipo.getValorTOTAL()));
-		textDATA.setText(tipo.getData());
+		textDATA.setText(tipo.getData().toString());
 		textFormadePagamento.setText(String.valueOf(tipo.getFormaDEpagamento()));
 //		******************************************************************************************************************************************************************************************************************************************
 

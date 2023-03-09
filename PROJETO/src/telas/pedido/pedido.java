@@ -1,16 +1,13 @@
-package telas.buscapedidos;
+package telas.pedido;
 
-import java.time.LocalDate;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Map;
 
-import controleSQL.CriacaoCliente;
-import controleSQL.CriacaoPedido;
-import recursos.transformaSTRINGemDATE;
-import telas.abrirpedido.formasdepagamento.PAGAMENTOS;
+import controleSQL.criacao.CriacaoPedido;
 import telas.clientes.cliente;
 import telas.item.item;
+import telas.pedido.FormaDePagamento.PAGAMENTOS;
 
 public class pedido {
 	
@@ -19,17 +16,18 @@ public class pedido {
 	private PAGAMENTOS formaDEpagamento;
 	private double valorTOTAL;
 	private Map<Integer, item> tabela;
-	private String data;
+	private Timestamp data;
 	
 	public pedido(String iD,cliente cliente,double valorTOTAL ,Map<Integer, item> tabela) {
 		this.ID = iD;
 		this.cliente = cliente;
 		this.valorTOTAL = valorTOTAL;
 		this.tabela = tabela;
-		this.data = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
+		this.data = Timestamp.valueOf(LocalDateTime.now());
+		//this.data = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
 	}
 	
-	public pedido(String iD,cliente cliente, PAGAMENTOS formaDEpagamento,double valorTOTAL,String data ,Map<Integer, item> tabela) {
+	public pedido(String iD,cliente cliente, PAGAMENTOS formaDEpagamento,double valorTOTAL,Timestamp data ,Map<Integer, item> tabela) {
 		this.ID = iD;
 		this.cliente = cliente;
 		this.formaDEpagamento = formaDEpagamento;
@@ -40,18 +38,16 @@ public class pedido {
 	}
 	
 	public pedido() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public void criar(pedido criado) {
-		//adiciona(criado);
 		new CriacaoPedido().getCriar(criado);
 	}
 
-	public LocalDate BUSCAporDATA() {
-		return new transformaSTRINGemDATE().transformarDATAcomHORARIO(data);
-
-	}
+//	public LocalDate BUSCAporDATA() {
+//		return new TransformaStringEmLocalDate().DATAcomHORARIO(data);
+//
+//	}
 	
 	public String getID() {
 		return ID;
@@ -87,10 +83,10 @@ public class pedido {
 	public void setValorTOTAL(double valorTOTAL) {
 		this.valorTOTAL = valorTOTAL;
 	}
-	public String getData() {
+	public Timestamp getData() {
 		return data;
 	}
-	public void setData(String data) {
+	public void setData(Timestamp data) {
 		this.data = data;
 	}
 	

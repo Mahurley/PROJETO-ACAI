@@ -1,7 +1,7 @@
 package telas.item;
 
 
-import controleSQL.CriacaoItem;
+import controleSQL.criacao.CriacaoItem;
 
 public class item implements Comparable<item> {
 

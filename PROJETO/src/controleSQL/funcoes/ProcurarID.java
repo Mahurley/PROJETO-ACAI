@@ -2,7 +2,8 @@ package controleSQL.funcoes;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import controleSQL.ConexaoBancodeDados;
+
+import controleSQL.criacao.ConexaoBancodeDados;
 import telas.clientes.cliente;
 
 public class ProcurarID {
@@ -23,8 +24,8 @@ public class ProcurarID {
 		try {
 			stmt.setString(1, valorreferencia2);
 		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+			System.out.println("Erro selecionar - ProcurarID");
+			System.out.println(e1.getMessage());
 		}
 		
 		
@@ -40,8 +41,8 @@ public class ProcurarID {
 			cliente.setQuantidadePEDIDOS(resultadoset.getInt("QUANTIDADE_PEDIDOS"));
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("Erro executar - ProcurarID");
+			System.out.println(e.getMessage());
 		}finally {
 			
 			try {
@@ -49,8 +50,8 @@ public class ProcurarID {
 				stmt.close();
 				resultadoset.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				System.out.println("Erro .close - ProcurarID");
+				System.out.println(e.getMessage());
 			}
 		}
 		return cliente;
